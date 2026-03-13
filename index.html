@@ -389,9 +389,22 @@
 </footer>
 
 <script>
+  // Immediately make visible any elements already in the viewport on load
+  function checkVisible() {
+    document.querySelectorAll('.fade-up').forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        el.classList.add('visible');
+      }
+    });
+  }
+  checkVisible();
+  window.addEventListener('load', checkVisible);
+
+  // Observer handles elements that come into view on scroll
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.08 });
   document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
 
   document.querySelectorAll('.faq-q').forEach(btn => {
