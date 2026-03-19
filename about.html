@@ -37,7 +37,7 @@
     .nav-cta { background: var(--forest) !important; color: var(--white) !important; padding: 0.55rem 1.3rem !important; border-radius: 999px; }
     .nav-cta:hover { background: var(--forest-mid) !important; }
     .nav-cta-mobile { display: none; }
-    @media (max-width: 600px) { .nav-links { display: none; } .nav-cta-mobile { display: inline-block; padding: 0.45rem 0.9rem !important; font-size: 0.72rem; } }
+    @media (max-width: 600px) { .nav-links { display: none; } .nav-cta-mobile { display: inline-block; padding: 0.45rem 0.9rem !important; font-size: 0.88rem; font-weight: 600; text-decoration: none; margin-left: auto; } }
 
     /* PAGE */
     .page-header {
@@ -99,8 +99,8 @@
     .divider { border: none; border-top: 1px solid var(--grey-border); max-width: 1000px; margin: 0 auto; }
 
     /* CTA / CONTACT */
-    .about-cta { background: var(--forest); color: var(--white); padding: 6rem 5%; text-align: center; }
-    .about-cta h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300; margin-bottom: 1rem; }
+    .about-cta { background: var(--forest); color: var(--white); padding: 3rem 5% 6rem; text-align: center; }
+    .about-cta h2 { font-family: 'DM Sans', sans-serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 1rem; }
     .about-cta > p { font-size: 1rem; font-weight: 300; opacity: 0.75; margin-bottom: 2.5rem; max-width: 440px; margin-left: auto; margin-right: auto; }
     .btn-primary { background: var(--white); color: var(--forest); padding: 0.85rem 2rem; border: none; border-radius: 999px; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; transition: opacity 0.2s; text-decoration: none; display: inline-block; }
     .btn-primary:hover { opacity: 0.85; }
@@ -121,6 +121,8 @@
 
     /* FOOTER */
     footer { background: var(--grey-dark); color: rgba(255,255,255,0.45); padding: 2.5rem 5%; display: flex; align-items: center; justify-content: space-between; font-size: 0.78rem; letter-spacing: 0.05em; }
+    footer > :first-child { flex: 1; }
+    footer > :last-child { flex: 1; justify-content: flex-end; }
     footer a { color: rgba(255,255,255,0.45); text-decoration: none; }
     footer a:hover { color: white; }
     .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: rgba(255,255,255,0.7); font-weight: 400; }
@@ -232,7 +234,7 @@
 <div class="page-header fade-up">
   <p class="page-eyebrow">The people behind the work</p>
   <h1 class="page-title">Our Team</h1>
-  <p class="page-sub">We're two founders who believe every small business deserves a great website — without the big agency price tag.</p>
+  <p class="page-sub">We're two founders who believe every small business deserves a great website — without the big upfront cost.</p>
 </div>
 
 <section class="founders">
@@ -280,8 +282,8 @@
 </section>
 
 <div class="about-cta">
-  <h2>Ready to work together?</h2>
-  <p>Book a free 15-minute call and let's talk about your business.</p>
+  <h2>Book your free<br>15-minute consultation</h2>
+  <p>Tell us a bit about your business and we'll be in touch to arrange a quick call. No commitment required.</p>
   <div class="contact-form fade-up">
     <div id="about-form-success" class="form-success">
       <h3>Thanks! We'll be in touch soon.</h3>
