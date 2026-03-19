@@ -36,12 +36,13 @@
     .nav-links a:hover { color: var(--forest); }
     .nav-cta { background: var(--forest) !important; color: var(--white) !important; padding: 0.55rem 1.3rem !important; border-radius: 999px; }
     .nav-cta:hover { background: var(--forest-mid) !important; }
+    .nav-cta-mobile { display: none; }
 
     /* HERO */
     .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 8rem 5% 5rem; background: #eaeceb; text-align: center; }
     .hero-inner { display: flex; flex-direction: column; align-items: center; gap: 3rem; max-width: 860px; width: 100%; }
-    .hero-eyebrow { font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.4rem; font-weight: 500; }
-    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 5vw, 5rem); font-weight: 300; line-height: 1.08; color: var(--forest); margin-bottom: 1.6rem; }
+    .hero-eyebrow { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.4rem; font-weight: 500; line-height: 1.7; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 5vw, 5rem); font-weight: 300; line-height: 1.08; color: var(--forest); margin-bottom: 1.6rem; }
     .hero-title em { font-style: italic; }
     .hero-sub { font-size: 1.05rem; line-height: 1.7; color: var(--grey-mid); font-weight: 300; margin-bottom: 2.4rem; max-width: 680px; margin-left: auto; margin-right: auto; }
     .hero-sub strong { color: var(--forest); font-weight: 500; }
@@ -64,15 +65,40 @@
     @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-25%); } }
 
     /* SECTIONS */
-    section { padding: 6rem 5%; }
+    section { padding: 3rem 5% 6rem; }
     .section-label { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; font-weight: 500; }
     .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.5vw, 3.2rem); font-weight: 300; line-height: 1.15; color: var(--forest); margin-bottom: 1.2rem; }
     .features-header .section-title, .portfolio-header .section-title, .pricing-header .section-title, .how-header .section-title, .faq-header .section-title, .contact-inner .section-title { font-family: 'DM Sans', sans-serif; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
     .section-sub { font-size: 1rem; color: var(--grey-mid); font-weight: 300; line-height: 1.7; max-width: 500px; }
 
+    /* PROBLEM → SOLUTION */
+    .problem-solution { background: var(--grey-light); }
+    .ps-inner { max-width: 700px; margin: 0 auto; }
+    .ps-header { text-align: center; margin-bottom: 3rem; }
+    .ps-header .section-title { font-family: 'DM Sans', sans-serif; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
+    .ps-block {
+      background: var(--white); border-radius: 10px; padding: 2.2rem 2.4rem;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    }
+    .ps-block-title { font-family: 'DM Sans', sans-serif; font-size: 1.25rem; font-weight: 700; color: var(--grey-dark); margin-bottom: 1.6rem; letter-spacing: -0.01em; text-align: center; }
+    .ps-items { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem 1.5rem; }
+    .ps-item { display: flex; align-items: center; gap: 0.65rem; font-size: 0.9rem; font-weight: 400; line-height: 1.4; }
+    .ps-item-icon { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.7rem; font-weight: 700; }
+    .ps-item--bad .ps-item-icon { background: #fde8e8; color: #c0392b; }
+    .ps-item--bad { color: var(--grey-mid); }
+    .ps-item--good .ps-item-icon { background: #e6f4ec; color: var(--accent); }
+    .ps-item--good { color: var(--grey-mid); }
+    .ps-arrow { text-align: center; padding: 1.2rem 0; color: var(--forest); }
+    .ps-arrow svg { width: 28px; height: 28px; }
+    @media (max-width: 500px) {
+      .ps-items { grid-template-columns: 1fr; }
+      .ps-block { padding: 1.6rem; }
+    }
+
     /* BENTO */
     .features { background: var(--grey-light); }
     .features-header { text-align: center; max-width: 1100px; margin: 0 auto 3.5rem; }
+    @media (min-width: 601px) { .features-title { white-space: nowrap; display: block; width: max-content; margin-left: auto; margin-right: auto; } }
     .features-header .section-sub { margin: 0 auto; }
     .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; max-width: 1100px; margin: 0 auto; }
     .bento { background: var(--white); border: 1px solid transparent; border-radius: 4px; padding: 2.2rem; transition: border-color 0.25s, transform 0.2s, box-shadow 0.25s; cursor: default; }
@@ -85,7 +111,7 @@
     /* HOW IT WORKS */
     .how { background: var(--white); }
     .how-inner { max-width: 1100px; margin: 0 auto; }
-    .how-header { margin-bottom: 4rem; }
+    .how-header { margin-bottom: 1rem; }
     .steps-list { display: flex; flex-direction: column; gap: 0; position: relative; }
     .step {
       display: grid;
@@ -131,7 +157,7 @@
     }
 
     /* FAQ */
-    .faq { background: var(--forest); color: var(--white); padding-top: 5rem; }
+    .faq { background: var(--forest); color: var(--white); }
     .faq .section-label { color: rgba(255,255,255,0.4); }
     .faq .section-title { color: var(--white); }
     .faq-inner { max-width: 800px; margin: 0 auto; }
@@ -146,7 +172,7 @@
     .faq-item.open .faq-a { max-height: 300px; padding-bottom: 1.6rem; }
 
     /* CONTACT */
-    .contact { background: var(--grey-light); padding-top: 4rem; }
+    .contact { background: var(--grey-light); }
     .contact-inner { max-width: 700px; margin: 0 auto; text-align: center; }
     .contact-inner .section-sub { margin: 0 auto 2.5rem; }
     .contact-form { background: var(--white); border: 1px solid var(--grey-border); border-radius: 4px; padding: 2.5rem; text-align: left; }
@@ -163,6 +189,8 @@
     footer a { color: rgba(255,255,255,0.45); text-decoration: none; }
     footer a:hover { color: white; }
     .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: rgba(255,255,255,0.7); font-weight: 400; }
+    .footer-location { display: flex; align-items: center; gap: 0.4rem; font-size: 0.75rem; color: rgba(255,255,255,0.35); letter-spacing: 0.04em; margin-top: 0.25rem; }
+    .footer-location svg { width: 11px; height: 11px; flex-shrink: 0; }
 
     /* PORTFOLIO */
     .portfolio { background: var(--grey-light); }
@@ -223,7 +251,7 @@
     .lightbox-caption { color: rgba(255,255,255,0.6); font-size: 0.85rem; margin-top: 0.9rem; text-align: center; }
 
     /* PRICING */
-    .pricing { background: var(--white); padding-top: 3rem; }
+    .pricing { background: var(--white); }
     .pricing-header { text-align: center; max-width: 600px; margin: 0 auto 3.5rem; }
     .pricing-header .section-sub { margin: 0 auto; }
     .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 800px; margin: 0 auto; }
@@ -235,7 +263,8 @@
     .pricing-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(1,50,18,0.1); border-color: #000; }
     .pricing-plan { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; color: var(--accent); margin-bottom: 1rem; }
     .pricing-price { font-family: 'DM Sans', sans-serif; font-size: 2.6rem; font-weight: 700; line-height: 1; letter-spacing: -0.02em; color: var(--forest); margin-bottom: 0.3rem; }
-    .pricing-period { font-size: 0.8rem; color: var(--grey-mid); font-weight: 300; margin-bottom: 1.8rem; }
+    .pricing-period { font-size: 0.8rem; color: var(--grey-mid); font-weight: 300; margin-bottom: 1.2rem; }
+    .pricing-desc { font-size: 0.85rem; color: var(--grey-mid); font-weight: 300; line-height: 1.6; margin-bottom: 1.8rem; padding-bottom: 0; }
     .pricing-divider { border: none; border-top: 1px solid var(--grey-border); margin-bottom: 1.8rem; }
     .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; margin-bottom: 2.2rem; flex: 1; }
     .pricing-features li { font-size: 0.92rem; font-weight: 300; color: var(--grey-mid); display: flex; align-items: flex-start; gap: 0.6rem; line-height: 1.4; }
@@ -260,12 +289,83 @@
       .step-visual { max-width: 100%; }
       .step-title { font-size: clamp(1.7rem, 6vw, 2.2rem); }
       .form-row { grid-template-columns: 1fr; }
-      footer { flex-direction: column; gap: 1rem; text-align: center; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; align-items: center; }
     }
     @media (max-width: 600px) {
       .bento-grid { grid-template-columns: 1fr; }
       .bento.wide { grid-column: span 1; }
       .nav-links { display: none; }
+    }
+
+    /* MOBILE MENU */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 36px;
+      height: 36px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      z-index: 200;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--forest);
+      border-radius: 2px;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+      transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(250,250,248,0.97);
+      backdrop-filter: blur(12px);
+      z-index: 150;
+      padding: 5rem 5% 2.5rem;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      border-bottom: 1px solid var(--grey-border);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-close { position: absolute; top: 1.2rem; right: 5%; background: none; border: none; cursor: pointer; font-size: 1.5rem; color: var(--grey-dark); line-height: 1; padding: 0.4rem; }
+    .mobile-menu a {
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--grey-mid);
+      text-decoration: none;
+      padding: 1.1rem 0;
+      border-bottom: 1px solid var(--grey-border);
+      transition: color 0.2s;
+      text-align: center;
+      width: 100%;
+    }
+    .mobile-menu a:hover { color: var(--forest); }
+    .mobile-menu .mobile-cta {
+      margin-top: 1.5rem;
+      background: var(--forest);
+      color: var(--white) !important;
+      padding: 0.85rem 1.5rem;
+      border-radius: 999px;
+      text-align: center;
+      border-bottom: none;
+    }
+
+    @media (max-width: 600px) {
+      .hamburger { display: flex; }
+      .nav-cta-mobile { display: inline-block; padding: 0.45rem 0.9rem !important; font-size: 0.72rem; }
     }
   </style>
 </head>
@@ -277,7 +377,17 @@
     <a href="about.html">Our Team</a>
     <a href="#contact" class="nav-cta">Book a Call</a>
   </div>
+  <a href="#contact" class="nav-cta nav-cta-mobile">Book a Call</a>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-close" id="mobile-close" aria-label="Close menu">&#x2715;</button>
+  <a href="about.html">Our Team</a>
+  <a href="#contact" class="mobile-cta" id="mobile-cta">Book a Call</a>
+</div>
 
 <section class="hero">
   <div class="hero-inner">
@@ -285,9 +395,9 @@
       <img src="hero-image.png" alt="Small business website being built">
     </div>
     <div class="fade-up" style="transition-delay:0.2s">
-      <p class="hero-eyebrow">$0 Upfront</p>
-      <h1 class="hero-title">Your business<br>deserves a <em>great</em> website.</h1>
-      <p class="hero-sub">Midsomer Design builds beautiful, high-performing websites for small businesses — with <strong>no upfront cost</strong>. Just a simple monthly subscription.</p>
+      <p class="hero-eyebrow">$0 Upfront · Monthly Subscription · Ongoing Support</p>
+      <h1 class="hero-title">Websites for Australian Tradies,<br>built in <em>7 days.</em></h1>
+      <p class="hero-sub">Fast, modern websites for Australian trades businesses — with <strong>no upfront cost</strong> and ongoing support included.</p>
       <div class="hero-actions">
         <a href="#contact" class="btn-primary">Book a Free Consultation</a>
       </div>
@@ -324,16 +434,51 @@
   </div>
 </div>
 
+<section class="problem-solution">
+  <div class="ps-inner">
+
+    <div class="ps-header fade-up">
+      <h2 class="section-title">Most websites for Trades<br>don't work</h2>
+      <p class="section-sub" style="margin:0 auto;">They're outdated, expensive, and rarely bring in new customers.</p>
+    </div>
+
+    <div class="ps-block fade-up">
+      <p class="ps-block-title">The usual roadblocks</p>
+      <div class="ps-items">
+        <div class="ps-item ps-item--bad"><span class="ps-item-icon">✕</span>Expensive upfront costs</div>
+        <div class="ps-item ps-item--bad"><span class="ps-item-icon">✕</span>Poor mobile experience</div>
+        <div class="ps-item ps-item--bad"><span class="ps-item-icon">✕</span>No ongoing support</div>
+        <div class="ps-item ps-item--bad"><span class="ps-item-icon">✕</span>Websites that don't get leads</div>
+      </div>
+    </div>
+
+    <div class="ps-arrow fade-up">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+    </div>
+
+    <div class="ps-block fade-up">
+      <p class="ps-block-title">The Midsomer difference</p>
+      <div class="ps-items">
+        <div class="ps-item ps-item--good"><span class="ps-item-icon">✓</span>$0 upfront website builds</div>
+        <div class="ps-item ps-item--good"><span class="ps-item-icon">✓</span>Simple monthly subscription</div>
+        <div class="ps-item ps-item--good"><span class="ps-item-icon">✓</span>Ongoing updates and support</div>
+        <div class="ps-item ps-item--good"><span class="ps-item-icon">✓</span>Websites built to generate leads</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <section class="features" id="features">
   <div class="features-header fade-up">
-    <h2 class="section-title" style="white-space:nowrap; display:block; width:max-content; margin-left:auto; margin-right:auto;">Everything your business needs</h2>
+    <h2 class="section-title features-title">We provide everything you need</h2>
     <p class="section-sub">One subscription covers design, development, hosting, and ongoing updates. No surprises.</p>
   </div>
   <div class="bento-grid">
     <div class="bento wide fade-up">
       <svg class="bento-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
       <h3>Custom Website Design</h3>
-      <p>Every site is designed from scratch to match your brand. No templates, no cookie-cutter layouts. A site that actually looks like <em>you</em> — and converts visitors into customers.</p>
+      <p>Every site is designed from scratch to match your brand. A site that actually looks like <em>you</em> — and converts visitors into customers.</p>
     </div>
     <div class="bento fade-up">
       <svg class="bento-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
@@ -353,7 +498,7 @@
     <div class="bento fade-up">
       <svg class="bento-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
       <h3>Ongoing Updates</h3>
-      <p>Need to update your menu, prices, or photos? Just ask. Edits are included.</p>
+      <p>Need to update your prices or photos? Just let us know. Edits are included.</p>
     </div>
   </div>
 </section>
@@ -361,7 +506,7 @@
 <section class="how" id="how">
   <div class="how-inner">
     <div class="how-header fade-up" style="text-align:center;">
-      <h2 class="section-title">Our process</h2>
+      <h2 class="section-title">Here's how it works:</h2>
     </div>
     <div class="steps-list">
       <div id="steps-line"></div>
@@ -395,6 +540,7 @@
           <p class="step-label">Step 4</p>
           <h3 class="step-title">We grow together</h3>
           <p class="step-desc">Your website evolves with your business. Request updates, add new pages — we're with you every step of the way.</p>
+          <a href="#contact" class="btn-primary">Book a Call</a>
         </div>
         <div class="step-visual">Image placeholder</div>
       </div>
@@ -405,7 +551,7 @@
 <!-- PORTFOLIO -->
 <section class="portfolio" id="portfolio">
   <div class="portfolio-header fade-up">
-    <h2 class="section-title">Our Designs</h2>
+    <h2 class="section-title">Who we've partnered with</h2>
     <p class="section-sub"></p>
   </div>
   <div class="portfolio-grid">
@@ -473,7 +619,7 @@
 <!-- PRICING -->
 <section class="pricing" id="pricing">
   <div class="pricing-header fade-up">
-    <h2 class="section-title">Our Plans</h2>
+    <h2 class="section-title">Find what works for you</h2>
     <p class="section-sub">One flat monthly fee covers everything — design, hosting, updates, and support. No setup costs, no hidden extras.</p>
   </div>
   <div class="pricing-grid fade-up">
@@ -481,6 +627,7 @@
       <p class="pricing-plan">Starter</p>
       <div class="pricing-price">$99</div>
       <p class="pricing-period">per month, no lock-in</p>
+      <p class="pricing-desc">Perfect for sole traders and small businesses who need a professional online presence without the upfront cost. Great for new businesses, or those with an outdated or non-existent website.</p>
       <hr class="pricing-divider">
       <ul class="pricing-features">
         <li>Custom designed website</li>
@@ -496,6 +643,7 @@
       <p class="pricing-plan">Growth</p>
       <div class="pricing-price">$249</div>
       <p class="pricing-period">per month, no lock-in</p>
+      <p class="pricing-desc">Ideal for established businesses that want ongoing improvements, stronger SEO, and a website built to generate more leads. Best for businesses upgrading an old site or wanting more hands-on support.</p>
       <hr class="pricing-divider">
       <ul class="pricing-features">
         <li>Everything in Starter</li>
@@ -526,15 +674,19 @@
       </div>
       <div class="faq-item">
         <button class="faq-q">How long does it take to build my website? <span class="faq-icon">+</span></button>
-        <div class="faq-a">Most websites are designed, built, and launched within 2–3 weeks from our initial consultation. Larger projects may take a little longer.</div>
+        <div class="faq-a">Most websites are designed, built, and launched within 7 days from our initial consultation. Larger projects may take a little longer.</div>
       </div>
       <div class="faq-item">
         <button class="faq-q">Can I cancel my subscription? <span class="faq-icon">+</span></button>
-        <div class="faq-a">Yes. You can cancel at any time. If you cancel, your website will be taken offline.</div>
+        <div class="faq-a">Yes, you can cancel at any time. If you decide to cancel, your website will be taken offline at the end of your billing period. There are no hidden cancellation fees or surprise charges.</div>
       </div>
       <div class="faq-item">
-        <button class="faq-q">What kinds of businesses do you work with? <span class="faq-icon">+</span></button>
-        <div class="faq-a">We work with all kinds of small businesses — cafes, tradespeople, retail shops, service providers, consultants, and more. If you need a professional online presence, we can help.</div>
+        <button class="faq-q">Do you provide hosting? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Yes. Hosting, security, and ongoing technical maintenance are all included in your monthly subscription — nothing extra to set up or pay for.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can you update my website after it launches? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Absolutely. Ongoing updates and improvements are included in your subscription, so your website can continue evolving with your business.</div>
       </div>
     </div>
   </div>
@@ -560,7 +712,13 @@
 </section>
 
 <footer>
-  <span class="footer-logo">Midsomer Design</span>
+  <div>
+    <span class="footer-logo">Midsomer Design</span>
+    <div class="footer-location">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+      Sydney, Australia
+    </div>
+  </div>
   <span>© 2025 Midsomer Design. All rights reserved.</span>
   <div style="display:flex;gap:1.5rem;">
     <a href="about.html">Our Team</a>
@@ -585,6 +743,25 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.08 });
   document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+  // Mobile menu toggle
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+  document.getElementById('mobile-cta').addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    hamburger.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+  document.getElementById('mobile-close').addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    hamburger.classList.remove('open');
+    document.body.style.overflow = '';
+  });
 
   function openLightbox(card) {
     const title = card.dataset.title;
@@ -616,15 +793,18 @@
     const line = document.getElementById('steps-line');
     const list = document.querySelector('.steps-list');
     const visuals = document.querySelectorAll('.step-visual');
-    if (!line || !list || visuals.length === 0) return;
+    const texts = document.querySelectorAll('.step-text');
+    if (!line || !list || visuals.length === 0 || texts.length === 0) return;
     const listRect = list.getBoundingClientRect();
-    const firstRect = visuals[0].getBoundingClientRect();
+    const isMobile = window.innerWidth <= 900;
+    const firstAnchor = isMobile ? texts[0] : visuals[0];
+    const firstAnchorRect = firstAnchor.getBoundingClientRect();
     const lastRect = visuals[visuals.length - 1].getBoundingClientRect();
-    const firstStep = visuals[0].closest('.step');
+    const firstStep = firstAnchor.closest('.step');
     const lastStep = visuals[visuals.length - 1].closest('.step');
     const firstTransY = firstStep ? new DOMMatrix(getComputedStyle(firstStep).transform).m42 : 0;
     const lastTransY = lastStep ? new DOMMatrix(getComputedStyle(lastStep).transform).m42 : 0;
-    const top = firstRect.top - listRect.top - firstTransY;
+    const top = firstAnchorRect.top - listRect.top - firstTransY;
     const bottom = lastRect.bottom - listRect.top - lastTransY;
     line.style.top = top + 'px';
     line.style.height = (bottom - top) + 'px';
