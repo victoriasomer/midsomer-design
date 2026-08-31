@@ -1,0 +1,14 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "midsomer-preview",
+      "runtimeExecutable": "/bin/sh",
+      "runtimeArgs": [
+        "-c",
+        "cd '/private/tmp/claude-503/-Users-midsomer-Documents-GitHub-midsomer-design-midsomer-design/511a8d3f-ce38-4f17-a2b7-c18b044f9b19/scratchpad/site' && exec python3 -m http.server 4321"
+      ],
+      "port": 4321
+    }
+  ]
+}
