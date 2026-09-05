@@ -5,250 +5,244 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Midsomer Design — Websites for Small Business</title>
   <meta name="description" content="Midsomer Design builds beautiful, high-performing websites for small businesses — with no upfront cost. Just a simple monthly subscription." />
+  <meta name="theme-color" content="#f6f5f0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
   <style>
+    /* ------------------------------------------------------------------
+       SYSTEM
+       One ground colour, one ink, one green. Serif for display, sans for
+       everything else. Hairlines instead of boxes. Space does the work.
+    ------------------------------------------------------------------ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      /* greens */
-      --forest-deep: #01200b;
-      --forest: #013212;
-      --forest-mid: #024a1c;
-      --forest-light: #036b28;
-      --accent: #047a30;
-      --accent-bright: #0b9d43;
-      --mint: #9fe0b4;
-      --mint-soft: #e8f3ea;
+      --bg: #f6f5f0;
+      --surface: #ffffff;
+      --ink: #141613;
+      --ink-2: #494e47;
+      --ink-3: #6b706a;
+      --line: #e2e0d7;
+      --line-strong: #cfcdc3;
 
-      /* warm neutrals */
-      --cream: #fbfaf6;
-      --paper: #f3f2ec;
-      --line: #e4e2d9;
-      --ink: #14170f;
-      --ink-soft: #525a4e;
+      --green: #123a24;
+      --green-deep: #0e2a1b;
+      --green-text: #1f5a37;
 
-      /* legacy aliases (used by the process section) */
-      --grey-dark: #14170f;
-      --grey-mid: #525a4e;
-      --grey-light: #f3f2ec;
-      --grey-border: #e4e2d9;
-      --white: #fbfaf6;
+      --sage: #e6eae2;
+      --sage-2: #d6ddd1;
+      --stone: #ebe8df;
 
-      --shadow-sm: 0 1px 2px rgba(1,32,11,0.05), 0 4px 14px rgba(1,32,11,0.05);
-      --shadow-md: 0 2px 6px rgba(1,32,11,0.05), 0 16px 40px rgba(1,32,11,0.09);
-      --shadow-lg: 0 40px 90px rgba(1,32,11,0.18);
-      --r-sm: 10px;
-      --r: 16px;
-      --r-lg: 22px;
+      --display: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+      --sans: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+      --gutter: clamp(1.25rem, 5vw, 4rem);
+      --measure: 1180px;
       --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --r: 14px;
+      --r-lg: 20px;
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
     body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--cream);
+      font-family: var(--sans);
+      font-weight: 300;
+      background: var(--bg);
       color: var(--ink);
-      overflow-x: hidden;
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
+      overflow-x: hidden;
     }
+    ::selection { background: var(--green); color: #fff; }
+    img, svg { display: block; max-width: 100%; }
+    a { color: inherit; }
+    button { font: inherit; color: inherit; }
 
-    /* fine paper grain over the whole page */
-    body::after {
-      content: ''; position: fixed; inset: 0; z-index: 999; pointer-events: none; opacity: 0.35;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.09'/%3E%3C/svg%3E");
-    }
+    :focus-visible { outline: 2px solid var(--green); outline-offset: 3px; border-radius: 3px; }
 
-    ::selection { background: var(--forest); color: #fff; }
+    .wrap { width: 100%; max-width: var(--measure); margin: 0 auto; padding-inline: var(--gutter); }
+    .narrow { max-width: 760px; }
 
-    /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.35rem clamp(1.2rem, 5vw, 3.5rem);
-      background: rgba(251,250,246,0.72);
-      backdrop-filter: blur(18px) saturate(180%);
-      -webkit-backdrop-filter: blur(18px) saturate(180%);
-      border-bottom: 1px solid transparent;
-      transition: padding 0.35s var(--ease), background 0.35s, border-color 0.35s, box-shadow 0.35s;
+    /* TYPE */
+    .display {
+      font-family: var(--display); font-weight: 400; letter-spacing: -0.02em; line-height: 1.02;
+      text-wrap: balance; color: var(--ink);
     }
-    nav.scrolled {
-      padding-top: 0.85rem; padding-bottom: 0.85rem;
-      background: rgba(251,250,246,0.9);
-      border-bottom-color: var(--line);
-      box-shadow: 0 1px 20px rgba(1,32,11,0.05);
+    .display em { font-style: italic; color: var(--green-text); }
+    .h1 { font-size: clamp(2.9rem, 7.2vw, 5.6rem); }
+    .h2 { font-size: clamp(2.2rem, 4.6vw, 3.6rem); }
+    .h3 { font-size: clamp(1.7rem, 3vw, 2.4rem); }
+    .eyebrow {
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--ink-3);
     }
-    .nav-logo { display: inline-flex; align-items: center; gap: 0.65rem; text-decoration: none; }
-    .nav-mark {
-      width: 30px; height: 30px; border-radius: 8px; flex-shrink: 0;
-      background: linear-gradient(150deg, var(--forest-light), var(--forest) 65%);
-      display: grid; place-items: center;
-      font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 600; color: #fff;
-      box-shadow: 0 3px 10px rgba(1,50,18,0.28);
-    }
-    .nav-word { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; font-weight: 600; letter-spacing: 0.02em; color: var(--forest); }
-    .nav-links { display: flex; gap: 1.9rem; align-items: center; }
-    .nav-links a { position: relative; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.11em; text-transform: uppercase; color: var(--ink-soft); text-decoration: none; transition: color 0.2s; }
-    .nav-links a:not(.nav-cta)::after {
-      content: ''; position: absolute; left: 0; bottom: -5px; height: 1px; width: 0;
-      background: var(--forest); transition: width 0.3s var(--ease);
-    }
-    .nav-links a:not(.nav-cta):hover { color: var(--forest); }
-    .nav-links a:not(.nav-cta):hover::after { width: 100%; }
-    .nav-cta {
-      background: var(--forest) !important; color: #fff !important;
-      padding: 0.6rem 1.35rem !important; border-radius: 999px;
-      box-shadow: 0 4px 14px rgba(1,50,18,0.22);
-      transition: background 0.25s, transform 0.2s var(--ease), box-shadow 0.25s;
-    }
-    .nav-cta:hover { background: var(--forest-mid) !important; transform: translateY(-1px); box-shadow: 0 8px 22px rgba(1,50,18,0.28); }
-    #progress { position: absolute; left: 0; bottom: -1px; height: 2px; width: 0; background: linear-gradient(90deg, var(--forest), var(--accent-bright)); transition: width 0.1s linear; }
+    .lede { font-size: clamp(1.05rem, 1.4vw, 1.2rem); line-height: 1.6; color: var(--ink-2); text-wrap: pretty; }
+    .lede strong { font-weight: 500; color: var(--ink); }
 
     /* BUTTONS */
-    .btn-primary {
-      position: relative; display: inline-flex; align-items: center; gap: 0.6rem;
-      background: linear-gradient(160deg, var(--forest-mid), var(--forest) 70%);
-      color: #fff; padding: 0.95rem 2.1rem; border: none; border-radius: 999px;
-      font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em;
-      text-transform: uppercase; cursor: pointer; text-decoration: none;
-      box-shadow: 0 6px 20px rgba(1,50,18,0.22);
-      transition: transform 0.25s var(--ease), box-shadow 0.25s, filter 0.25s;
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
+      padding: 0.95rem 1.7rem; border-radius: 999px; border: 1px solid transparent;
+      font-family: var(--sans); font-size: 0.92rem; font-weight: 500; letter-spacing: 0.005em;
+      text-decoration: none; cursor: pointer; white-space: nowrap;
+      transition: background 0.25s, color 0.25s, border-color 0.25s, transform 0.3s var(--ease);
     }
-    .btn-primary::after { content: '→'; font-size: 0.95rem; letter-spacing: 0; transition: transform 0.28s var(--ease); }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(1,50,18,0.3); filter: brightness(1.06); }
-    .btn-primary:hover::after { transform: translateX(4px); }
-    .btn-ghost { color: var(--forest); font-size: 0.85rem; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; border-bottom: 1px solid var(--forest); padding-bottom: 2px; transition: opacity 0.2s; }
-    .btn-ghost:hover { opacity: 0.6; }
+    .btn-solid { background: var(--ink); color: #fff; }
+    .btn-solid:hover { background: var(--green); }
+    .btn-line { background: transparent; color: var(--ink); border-color: var(--line-strong); }
+    .btn-line:hover { border-color: var(--ink); }
+    .btn-light { background: #fff; color: var(--ink); }
+    .btn-light:hover { background: var(--sage); }
+    .btn:active { transform: translateY(1px); }
+    .link {
+      color: var(--ink); font-weight: 500; text-decoration: none; font-size: 0.92rem;
+      border-bottom: 1px solid var(--line-strong); padding-bottom: 2px; transition: border-color 0.25s;
+    }
+    .link:hover { border-color: var(--ink); }
 
-    /* HERO */
-    .hero {
-      position: relative; min-height: 100vh; display: flex; align-items: center;
-      padding: 9rem clamp(1.2rem, 5vw, 3.5rem) 6rem;
-      background: var(--paper); overflow: hidden;
-    }
-    .hero::before {
-      content: ''; position: absolute; inset: 0; pointer-events: none;
-      background:
-        radial-gradient(60% 55% at 78% 34%, rgba(11,157,67,0.16), transparent 62%),
-        radial-gradient(50% 50% at 8% 88%, rgba(1,50,18,0.09), transparent 60%);
-    }
-    .hero::after {
-      content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.5;
-      background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
-      background-size: 96px 96px;
-      -webkit-mask-image: radial-gradient(75% 65% at 50% 45%, #000, transparent 78%);
-      mask-image: radial-gradient(75% 65% at 50% 45%, #000, transparent 78%);
-    }
-    .hero-inner {
-      position: relative; z-index: 2; width: 100%; max-width: 1180px; margin: 0 auto;
-      display: grid; grid-template-columns: 1.02fr 0.98fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center;
-    }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 0.55rem;
-      font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600;
-      color: var(--forest); background: rgba(255,255,255,0.75); border: 1px solid var(--line);
-      padding: 0.45rem 1rem 0.45rem 0.8rem; border-radius: 999px; margin-bottom: 1.8rem;
-      box-shadow: var(--shadow-sm); backdrop-filter: blur(6px);
-    }
-    .hero-eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-bright); box-shadow: 0 0 0 3px rgba(11,157,67,0.18); }
-    .hero-title {
-      font-family: 'DM Sans', sans-serif; font-weight: 700; letter-spacing: -0.035em;
-      font-size: clamp(2.7rem, 5.1vw, 4.5rem); line-height: 1.03; color: var(--forest);
-      margin-bottom: 1.7rem;
-    }
-    .hero-title em { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 400; letter-spacing: -0.01em; color: var(--accent); }
-    .hero-sub { font-size: 1.06rem; line-height: 1.72; color: var(--ink-soft); font-weight: 300; margin-bottom: 2.4rem; max-width: 30rem; }
-    .hero-sub strong { color: var(--forest); font-weight: 600; }
-    .hero-actions { display: flex; gap: 1.4rem; align-items: center; flex-wrap: wrap; }
-    .hero-visual { position: relative; }
-    .hero-visual::before {
-      content: ''; position: absolute; left: 50%; top: 50%; width: 118%; aspect-ratio: 1;
-      transform: translate(-50%, -50%);
-      background: radial-gradient(circle, rgba(11,157,67,0.22), rgba(11,157,67,0.06) 45%, transparent 68%);
-      filter: blur(6px);
-    }
-    .hero-visual img {
-      position: relative; width: 100%; height: auto; display: block;
-      filter: drop-shadow(0 30px 45px rgba(1,32,11,0.16));
-      animation: float 9s ease-in-out infinite;
-    }
-    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
-    @media (prefers-reduced-motion: reduce) { .hero-visual img { animation: none; } }
+    /* SECTION RHYTHM */
+    section { padding-block: clamp(5rem, 11vw, 9.5rem); }
+    .section-head { margin-bottom: clamp(3rem, 6vw, 5rem); }
+    .section-head .eyebrow { margin-bottom: 1.2rem; }
+    .section-head .lede { margin-top: 1.4rem; max-width: 34rem; }
+    .section-head.center { text-align: center; }
+    .section-head.center .lede { margin-inline: auto; }
+    .rule { border: 0; border-top: 1px solid var(--line); }
 
-    /* TICKER */
-    .ticker { position: relative; background: var(--forest); color: #fff; overflow: hidden; padding: 1.05rem 0; }
-    .ticker-track { display: flex; white-space: nowrap; animation: ticker 34s linear infinite; }
-    .ticker-item { display: inline-flex; align-items: center; gap: 1.1rem; padding: 0 1.9rem; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.19em; text-transform: uppercase; color: rgba(255,255,255,0.82); }
-    .ticker-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--mint); flex-shrink: 0; }
-    .ticker::before, .ticker::after {
-      content: ''; position: absolute; top: 0; bottom: 0; width: 12%; z-index: 2; pointer-events: none;
+    /* ------------------------------------------------------------------
+       NAV
+    ------------------------------------------------------------------ */
+    .nav {
+      position: fixed; inset: 0 0 auto 0; z-index: 100;
+      background: rgba(246,245,240,0.8);
+      -webkit-backdrop-filter: blur(16px) saturate(160%); backdrop-filter: blur(16px) saturate(160%);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s, background 0.3s;
     }
-    .ticker::before { left: 0; background: linear-gradient(90deg, var(--forest), transparent); }
-    .ticker::after { right: 0; background: linear-gradient(270deg, var(--forest), transparent); }
-    @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-25%); } }
+    .nav.scrolled { border-bottom-color: var(--line); background: rgba(246,245,240,0.92); }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      height: 4.25rem;
+    }
+    .brand { display: inline-flex; align-items: baseline; gap: 0.45rem; text-decoration: none; }
+    .brand-name { font-family: var(--display); font-size: 1.55rem; letter-spacing: -0.015em; color: var(--ink); line-height: 1; }
+    .brand-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); transform: translateY(-2px); }
+    .nav-links { display: flex; align-items: center; gap: 2.1rem; }
+    .nav-links a:not(.btn) {
+      font-size: 0.92rem; font-weight: 400; color: var(--ink-2); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:not(.btn):hover { color: var(--ink); }
+    .nav-links .btn { padding: 0.62rem 1.15rem; font-size: 0.86rem; }
 
-    /* SECTIONS */
-    section { padding: clamp(4.5rem, 9vw, 8rem) clamp(1.2rem, 5vw, 3.5rem); }
-    .section-label { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; font-weight: 600; }
-    .section-title {
-      font-family: 'DM Sans', sans-serif; font-weight: 700; letter-spacing: -0.032em;
-      font-size: clamp(2rem, 3.6vw, 3.1rem); line-height: 1.08; color: var(--forest);
-      margin-bottom: 1.1rem; text-wrap: balance;
+    .menu-btn {
+      display: none; align-items: center; gap: 0.6rem; background: none; border: 0; cursor: pointer;
+      font-size: 0.86rem; font-weight: 500; color: var(--ink); padding: 0.5rem 0;
     }
-    .section-sub { font-size: 1rem; color: var(--ink-soft); font-weight: 300; line-height: 1.72; max-width: 34rem; text-wrap: pretty; }
-    .head-center { text-align: center; max-width: 40rem; margin: 0 auto clamp(2.8rem, 5vw, 4rem); }
-    .head-center .section-sub { margin-inline: auto; }
+    .menu-btn .bars { position: relative; width: 22px; height: 10px; }
+    .menu-btn .bars::before, .menu-btn .bars::after {
+      content: ''; position: absolute; left: 0; right: 0; height: 1.5px; background: var(--ink);
+      transition: transform 0.35s var(--ease), top 0.35s var(--ease);
+    }
+    .menu-btn .bars::before { top: 0; }
+    .menu-btn .bars::after { top: 100%; }
+    body.menu-open .menu-btn .bars::before { top: 50%; transform: rotate(45deg); }
+    body.menu-open .menu-btn .bars::after { top: 50%; transform: rotate(-45deg); }
 
-    /* BENTO */
-    .features { background: var(--cream); }
-    .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; max-width: 1160px; margin: 0 auto; }
-    .bento {
-      position: relative; overflow: hidden;
-      background: #fff; border: 1px solid var(--line); border-radius: var(--r);
-      padding: 2.1rem 1.9rem 2.2rem;
-      box-shadow: var(--shadow-sm);
-      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s;
+    .menu {
+      position: fixed; inset: 0; z-index: 90; background: var(--bg);
+      display: flex; flex-direction: column; justify-content: space-between;
+      padding: 6.5rem var(--gutter) 2.5rem;
+      opacity: 0; visibility: hidden; transform: translateY(-8px);
+      transition: opacity 0.35s var(--ease), transform 0.35s var(--ease), visibility 0s linear 0.35s;
     }
-    .bento::before {
-      content: ''; position: absolute; top: 0; left: 0; height: 2px; width: 0;
-      background: linear-gradient(90deg, var(--forest), var(--accent-bright));
-      transition: width 0.5s var(--ease);
+    body.menu-open .menu { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+    body.menu-open { overflow: hidden; }
+    .menu-list { list-style: none; display: flex; flex-direction: column; }
+    .menu-list li { border-top: 1px solid var(--line); }
+    .menu-list li:last-child { border-bottom: 1px solid var(--line); }
+    .menu-list a {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 1.1rem 0; text-decoration: none;
+      font-family: var(--display); font-size: 2.1rem; letter-spacing: -0.02em; color: var(--ink);
     }
-    .bento:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); border-color: rgba(1,50,18,0.18); }
-    .bento:hover::before { width: 100%; }
-    .bento-icon-wrap {
-      width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center;
-      background: var(--mint-soft); color: var(--forest); margin-bottom: 1.5rem;
-      transition: transform 0.4s var(--ease), background 0.3s;
-    }
-    .bento:hover .bento-icon-wrap { transform: translateY(-2px) rotate(-4deg); }
-    .bento-icon { width: 21px; height: 21px; }
-    .bento h3 { font-size: 1.08rem; font-weight: 600; letter-spacing: -0.015em; color: var(--forest); margin-bottom: 0.6rem; }
-    .bento p { font-size: 0.92rem; color: var(--ink-soft); line-height: 1.7; font-weight: 300; }
+    .menu-list a span { font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-3); }
+    .menu-foot { display: flex; flex-direction: column; gap: 1rem; }
+    .menu-foot p { font-size: 0.9rem; color: var(--ink-3); }
 
-    .bento.wide {
-      grid-column: span 2; color: #fff; border-color: transparent;
-      background: linear-gradient(145deg, var(--forest-mid) 0%, var(--forest) 45%, var(--forest-deep) 100%);
-      padding: 2.6rem 2.4rem;
-      box-shadow: 0 18px 44px rgba(1,32,11,0.24);
-    }
-    .bento.wide::after {
-      content: ''; position: absolute; right: -14%; top: -46%; width: 62%; aspect-ratio: 1; border-radius: 50%;
-      background: radial-gradient(circle, rgba(11,157,67,0.4), transparent 66%);
-      pointer-events: none;
-    }
-    .bento.wide:hover { transform: translateY(-6px); box-shadow: 0 26px 60px rgba(1,32,11,0.3); border-color: transparent; }
-    .bento.wide .bento-icon-wrap { background: rgba(255,255,255,0.12); color: var(--mint); border: 1px solid rgba(255,255,255,0.14); }
-    .bento.wide h3 { color: #fff; font-size: 1.42rem; letter-spacing: -0.022em; margin-bottom: 0.75rem; }
-    .bento.wide p { color: rgba(255,255,255,0.74); font-size: 0.98rem; max-width: 34rem; }
-    .bento.wide p em { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.15em; color: var(--mint); }
+    /* ------------------------------------------------------------------
+       HERO — centred copy, product preview below
+    ------------------------------------------------------------------ */
+    .hero { padding: clamp(8.5rem, 16vw, 11.5rem) 0 0; }
+    .hero-copy { text-align: center; max-width: 52rem; margin: 0 auto; }
+    .hero-copy .eyebrow { margin-bottom: 1.6rem; display: inline-flex; align-items: center; gap: 0.6rem; }
+    .hero-copy .eyebrow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+    .hero-copy .lede { margin: 1.8rem auto 2.4rem; max-width: 34rem; }
+    .hero-actions { display: flex; justify-content: center; align-items: center; gap: 1.6rem; flex-wrap: wrap; }
 
-    /* HOW IT WORKS — layout kept as-is */
-    .how { background: var(--white); }
+    /* The preview: a browser frame holding a designed placeholder of a client site.
+       Replace the contents of .site with a real screenshot <img> when ready. */
+    .preview { margin-top: clamp(3.5rem, 7vw, 5.5rem); position: relative; }
+    .preview::after {
+      content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 40%; z-index: 2; pointer-events: none;
+      background: linear-gradient(to bottom, transparent, var(--bg));
+    }
+    .frame {
+      max-width: 1080px; margin: 0 auto; background: var(--surface);
+      border: 1px solid var(--line); border-bottom: 0; border-radius: var(--r-lg) var(--r-lg) 0 0;
+      box-shadow: 0 -1px 0 rgba(255,255,255,0.8) inset, 0 30px 80px -30px rgba(20,22,19,0.18);
+      overflow: hidden;
+    }
+    .frame-bar { display: flex; align-items: center; gap: 0.9rem; padding: 0.85rem 1.1rem; border-bottom: 1px solid var(--line); }
+    .frame-bar .dots { display: flex; gap: 6px; }
+    .frame-bar .dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--line-strong); }
+    .frame-bar .url {
+      flex: 1; max-width: 340px; margin: 0 auto; height: 24px; border-radius: 6px; background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.68rem; color: var(--ink-3); letter-spacing: 0.04em;
+    }
+    .site { padding: clamp(1.4rem, 3.4vw, 3rem) clamp(1.4rem, 3.8vw, 3.4rem) 0; }
+    .site-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: clamp(2rem, 5vw, 4rem); }
+    .site-nav .wm { font-family: var(--display); font-size: clamp(1rem, 1.6vw, 1.3rem); color: var(--ink); }
+    .site-nav .lk { display: flex; gap: 1.2rem; }
+    .site-nav .lk i, .site-nav .lk b { display: block; height: 6px; border-radius: 3px; background: var(--stone); width: 34px; }
+    .site-nav .lk b { background: var(--green); width: 56px; }
+    .site-hero { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(1.5rem, 4vw, 3.5rem); align-items: center; }
+    .site-hero .t {
+      font-family: var(--display); color: var(--ink); line-height: 1; letter-spacing: -0.02em;
+      font-size: clamp(1.7rem, 4.6vw, 4.2rem); text-wrap: balance;
+    }
+    .site-hero .t em { font-style: italic; color: var(--green-text); }
+    .site-hero .p { margin-top: 1.1rem; display: grid; gap: 7px; max-width: 300px; }
+    .site-hero .p i { display: block; height: 7px; border-radius: 4px; background: var(--stone); }
+    .site-hero .p i:nth-child(2) { width: 84%; }
+    .site-hero .p i:nth-child(3) { width: 56%; }
+    .site-hero .cta { margin-top: 1.4rem; width: 110px; height: 30px; border-radius: 999px; background: var(--ink); }
+    .site-img { aspect-ratio: 4 / 5; border-radius: 12px; background: var(--sage); position: relative; overflow: hidden; }
+    .site-img::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(90% 70% at 70% 100%, var(--sage-2), transparent 70%);
+    }
+    .site-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(0.8rem, 2vw, 1.4rem); margin-top: clamp(1.5rem, 4vw, 3rem); }
+    .site-strip div { aspect-ratio: 3 / 2; border-radius: 10px; background: var(--stone); }
+    .site-strip div:nth-child(2) { background: var(--sage); }
+
+    /* A single quiet line of reassurance under the preview */
+    .assurance { padding-block: 0; margin-top: 1.5rem; }
+    .assurance-list {
+      list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.9rem 0;
+      padding-block: 1.6rem; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    }
+    .assurance-list li { font-size: 0.86rem; color: var(--ink-2); font-weight: 400; display: flex; align-items: center; }
+    .assurance-list li + li::before { content: ''; width: 3px; height: 3px; border-radius: 50%; background: var(--line-strong); margin: 0 1.3rem; }
+
+    /* ------------------------------------------------------------------
+       PROCESS — layout and structure preserved. Re-skinned only.
+    ------------------------------------------------------------------ */
     .how-inner { max-width: 1100px; margin: 0 auto; }
-    .how-header { margin-bottom: 4rem; }
+    .how-header { margin-bottom: clamp(2rem, 4vw, 3rem); }
     .steps-list { display: flex; flex-direction: column; gap: 0; position: relative; }
     .step {
       display: grid;
@@ -258,633 +252,618 @@
       padding: 5rem 0 5rem 2.5rem;
       position: relative;
     }
+    /* alternate: even steps put the image on the left */
+    .step:nth-child(even of .step) .step-text { order: 2; }
+    .step:nth-child(even of .step) .step-visual { order: 1; justify-self: start; }
+    .step:nth-child(odd of .step) .step-visual { justify-self: end; }
     #steps-line {
       position: absolute;
       left: 0;
-      width: 2px;
-      background: #1a2e1a;
+      width: 1px;
+      background: var(--ink);
       pointer-events: none;
     }
     .step-label {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 500;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--forest-light);
-      margin-bottom: 1rem;
+      color: var(--green-text);
+      margin-bottom: 1.1rem;
     }
-    .step-title { font-family: 'DM Sans', sans-serif; font-size: clamp(1.9rem, 3vw, 2.8rem); font-weight: 700; color: #1a2e1a; margin-bottom: 1rem; line-height: 1.1; letter-spacing: -0.02em; }
-    .step-desc { font-size: 1rem; color: var(--grey-mid); line-height: 1.75; font-weight: 300; margin-bottom: 1.75rem; max-width: 420px; }
+    .step-title { font-family: var(--display); font-size: clamp(2rem, 3.4vw, 3rem); font-weight: 400; color: var(--ink); margin-bottom: 1.1rem; line-height: 1.05; letter-spacing: -0.02em; text-wrap: balance; }
+    .step-desc { font-size: 1.02rem; color: var(--ink-2); line-height: 1.7; font-weight: 300; margin-bottom: 1.75rem; max-width: 420px; text-wrap: pretty; }
     .step-visual {
       aspect-ratio: 1 / 1;
       width: 100%;
       max-width: 480px;
-      border-radius: 8px;
-      background: linear-gradient(135deg, var(--grey-light) 0%, #e8e8e4 100%);
+      border-radius: var(--r);
+      background: var(--sage);
       display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--grey-border);
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      border: 1px solid var(--grey-border);
+      align-items: flex-end;
+      justify-content: flex-end;
+      border: 1px solid rgba(20,22,19,0.05);
       overflow: hidden;
       position: relative;
     }
+    .step-visual img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    /* designed empty state: a large serif numeral and an inset frame */
+    .step-visual::before {
+      content: ''; position: absolute; inset: 1.1rem; border: 1px solid rgba(20,22,19,0.08); border-radius: calc(var(--r) - 6px);
+    }
+    .step-visual .num {
+      font-family: var(--display); font-size: clamp(6rem, 14vw, 11rem); line-height: 0.8; color: var(--ink);
+      opacity: 0.14; padding: 0 1.6rem 1.4rem 0; letter-spacing: -0.04em;
+    }
+    .step:nth-child(even of .step) .step-visual { background: var(--stone); }
+    .step-visual .num.i { font-style: italic; }
 
-    /* PORTFOLIO */
-    .portfolio { position: relative; background: linear-gradient(175deg, var(--forest) 0%, var(--forest-deep) 100%); overflow: hidden; }
-    .portfolio::before {
-      content: ''; position: absolute; inset: 0; pointer-events: none;
-      background: radial-gradient(45% 40% at 82% 8%, rgba(11,157,67,0.22), transparent 65%);
-    }
-    .portfolio .section-title { color: #fff; }
-    .portfolio .section-sub { color: rgba(255,255,255,0.6); }
-    .portfolio-grid { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.4rem; max-width: 1100px; margin: 0 auto; }
-    .portfolio-card {
-      background: rgba(255,255,255,0.045); border: 1px solid rgba(255,255,255,0.1);
-      border-radius: var(--r); overflow: hidden; cursor: pointer;
-      backdrop-filter: blur(4px);
-      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.35s, background 0.35s;
-    }
-    .portfolio-card:hover { transform: translateY(-6px); border-color: rgba(159,224,180,0.45); background: rgba(255,255,255,0.07); box-shadow: 0 26px 60px rgba(0,0,0,0.35); }
-    .portfolio-thumb {
-      aspect-ratio: 16 / 10; position: relative; overflow: hidden;
-      display: flex; align-items: center; justify-content: center;
-      background:
-        repeating-linear-gradient(135deg, rgba(255,255,255,0.03) 0 1px, transparent 1px 12px),
-        rgba(255,255,255,0.03);
-    }
-    .portfolio-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s var(--ease); }
-    .portfolio-card:hover .portfolio-thumb img { transform: scale(1.04); }
-    .portfolio-thumb-placeholder { display: flex; flex-direction: column; align-items: center; gap: 0.7rem; color: rgba(255,255,255,0.22); }
-    .portfolio-thumb-placeholder svg { width: 34px; height: 34px; }
-    .portfolio-thumb-placeholder span { font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase; }
-    .portfolio-arrow {
-      position: absolute; top: 0.9rem; right: 0.9rem; width: 32px; height: 32px; border-radius: 50%;
-      display: grid; place-items: center; color: var(--forest); background: var(--mint);
-      font-size: 0.85rem; opacity: 0; transform: translateY(-6px) scale(0.9);
-      transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
-    }
-    .portfolio-card:hover .portfolio-arrow { opacity: 1; transform: translateY(0) scale(1); }
-    .portfolio-info { padding: 1.3rem 1.5rem 1.5rem; border-top: 1px solid rgba(255,255,255,0.08); }
-    .portfolio-info h3 { font-size: 1.02rem; font-weight: 600; letter-spacing: -0.012em; color: #fff; margin-bottom: 0.25rem; }
-    .portfolio-info p { font-size: 0.83rem; color: rgba(255,255,255,0.52); font-weight: 300; }
+    /* ------------------------------------------------------------------
+       INCLUDED — the old feature boxes, as hairline rows
+    ------------------------------------------------------------------ */
+    .included { border-top: 1px solid var(--line); }
+    .included-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(2rem, 6vw, 6rem); align-items: start; }
+    .included-grid .section-head { margin-bottom: 0; position: sticky; top: 6rem; }
+    .inc-list { list-style: none; }
+    .inc-list li { display: grid; grid-template-columns: 2.4rem 1fr; gap: 1rem; padding: 1.5rem 0; border-top: 1px solid var(--line); }
+    .inc-list li:last-child { border-bottom: 1px solid var(--line); }
+    .inc-list .n { font-family: var(--display); font-size: 1.05rem; color: var(--ink-3); padding-top: 0.2rem; }
+    .inc-list h3 { font-family: var(--sans); font-size: 1.08rem; font-weight: 500; color: var(--ink); margin-bottom: 0.35rem; letter-spacing: -0.005em; }
+    .inc-list p { font-size: 0.97rem; color: var(--ink-2); max-width: 36rem; text-wrap: pretty; }
+    .inc-list p em { font-style: italic; font-family: var(--display); font-size: 1.12em; color: var(--ink); }
 
-    /* LIGHTBOX */
-    @keyframes lightbox-in { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes lightbox-content-in { from { opacity: 0; transform: translateY(16px) scale(0.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
-    .lightbox { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(1,20,8,0.92); backdrop-filter: blur(6px); align-items: center; justify-content: center; padding: 2rem; }
-    .lightbox.open { display: flex; animation: lightbox-in 0.25s ease; }
-    .lightbox.open .lightbox-inner { animation: lightbox-content-in 0.3s var(--ease); }
-    .lightbox-inner { position: relative; max-width: 1000px; width: 100%; }
-    .lightbox-inner img { width: 100%; height: auto; border-radius: var(--r-sm); display: block; }
-    .lightbox-placeholder { width: 100%; aspect-ratio: 16/10; background: #10160f; border-radius: var(--r-sm); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.22); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; }
-    .lightbox-close { position: absolute; top: -1rem; right: -1rem; width: 2.3rem; height: 2.3rem; background: var(--cream); border: none; border-radius: 50%; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; color: var(--ink); transition: background 0.2s, transform 0.2s; }
-    .lightbox-close:hover { background: #fff; transform: rotate(90deg); }
-    .lightbox-caption { color: rgba(255,255,255,0.6); font-size: 0.85rem; margin-top: 0.9rem; text-align: center; }
+    /* ------------------------------------------------------------------
+       PRICING
+    ------------------------------------------------------------------ */
+    .pricing { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; max-width: 900px; margin: 0 auto; align-items: stretch; }
+    .plan {
+      position: relative; display: flex; flex-direction: column;
+      background: var(--bg); border: 1px solid var(--line); border-radius: var(--r-lg);
+      padding: clamp(1.8rem, 3vw, 2.6rem);
+    }
+    .plan-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1.6rem; }
+    .plan-name { font-family: var(--display); font-size: 1.6rem; letter-spacing: -0.01em; }
+    .plan-tag { font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
+    .plan-price { display: flex; align-items: baseline; gap: 0.5rem; }
+    .plan-price .amt { font-family: var(--display); font-size: clamp(3.2rem, 5vw, 4.2rem); line-height: 1; letter-spacing: -0.03em; }
+    .plan-price .per { font-size: 0.9rem; color: var(--ink-3); }
+    .plan-note { font-size: 0.88rem; color: var(--ink-3); margin-top: 0.6rem; }
+    .plan hr { margin: 1.8rem 0; }
+    .plan ul { list-style: none; display: grid; gap: 0.85rem; flex: 1; margin-bottom: 2.2rem; }
+    .plan li { display: flex; gap: 0.8rem; align-items: baseline; font-size: 0.97rem; color: var(--ink-2); }
+    .plan li::before { content: ''; flex: none; width: 14px; height: 1px; background: currentColor; opacity: 0.6; transform: translateY(-0.2em); }
+    .plan .btn { width: 100%; }
 
-    /* PRICING */
-    .pricing { background: var(--cream); }
-    .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; max-width: 860px; margin: 0 auto; align-items: stretch; }
-    .pricing-card {
-      position: relative; overflow: hidden;
-      background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg);
-      padding: 2.8rem 2.4rem; display: flex; flex-direction: column;
-      box-shadow: var(--shadow-sm);
-      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.35s;
-    }
-    .pricing-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); border-color: rgba(1,50,18,0.2); }
-    .pricing-plan { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 600; color: var(--accent); margin-bottom: 1.3rem; }
-    .pricing-price { font-size: 3rem; font-weight: 700; line-height: 1; letter-spacing: -0.045em; color: var(--forest); margin-bottom: 0.4rem; }
-    .pricing-period { font-size: 0.8rem; color: var(--ink-soft); font-weight: 300; margin-bottom: 1.9rem; }
-    .pricing-divider { border: none; border-top: 1px solid var(--line); margin-bottom: 1.9rem; }
-    .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 0.9rem; margin-bottom: 2.3rem; flex: 1; }
-    .pricing-features li { font-size: 0.92rem; font-weight: 300; color: var(--ink-soft); display: flex; align-items: flex-start; gap: 0.7rem; line-height: 1.45; }
-    .pricing-features li::before {
-      content: '✓'; flex-shrink: 0; margin-top: 0.08rem;
-      width: 19px; height: 19px; border-radius: 50%;
-      display: inline-flex; align-items: center; justify-content: center;
-      background: var(--mint-soft); color: var(--accent); font-size: 0.6rem; font-weight: 700;
-    }
-    .pricing-cta {
-      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%;
-      text-align: center; padding: 0.95rem 1.5rem; border-radius: 999px;
-      font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
-      background: var(--forest); color: #fff;
-      transition: background 0.25s, transform 0.25s var(--ease), box-shadow 0.25s;
-    }
-    .pricing-cta::after { content: '→'; transition: transform 0.28s var(--ease); }
-    .pricing-cta:hover { background: var(--forest-mid); transform: translateY(-2px); box-shadow: 0 10px 26px rgba(1,50,18,0.24); }
-    .pricing-cta:hover::after { transform: translateX(4px); }
+    .plan.featured { background: var(--green); color: #fff; border-color: var(--green); }
+    .plan.featured .plan-tag, .plan.featured .plan-price .per, .plan.featured .plan-note { color: rgba(255,255,255,0.7); }
+    .plan.featured hr { border-top-color: rgba(255,255,255,0.18); }
+    .plan.featured li { color: rgba(255,255,255,0.86); }
+    .plan-foot { text-align: center; margin-top: 2.2rem; font-size: 0.9rem; color: var(--ink-3); }
 
-    .pricing-card.featured {
-      background: linear-gradient(155deg, var(--forest-mid) 0%, var(--forest) 48%, var(--forest-deep) 100%);
-      border-color: transparent; color: #fff;
-      box-shadow: 0 22px 55px rgba(1,32,11,0.26);
+    /* ------------------------------------------------------------------
+       WORK — designed empty state until real screenshots exist
+    ------------------------------------------------------------------ */
+    .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.2rem, 3vw, 2.2rem) clamp(1.2rem, 3vw, 2rem); }
+    .work-card { text-decoration: none; color: inherit; display: block; }
+    .work-thumb {
+      aspect-ratio: 4 / 3; border-radius: var(--r); overflow: hidden; position: relative;
+      background: var(--sage); border: 1px solid rgba(20,22,19,0.05);
+      transition: transform 0.6s var(--ease);
     }
-    .pricing-card.featured::after {
-      content: ''; position: absolute; right: -20%; top: -30%; width: 70%; aspect-ratio: 1; border-radius: 50%;
-      background: radial-gradient(circle, rgba(11,157,67,0.35), transparent 68%); pointer-events: none;
-    }
-    .pricing-card.featured:hover { border-color: transparent; box-shadow: 0 30px 70px rgba(1,32,11,0.32); }
-    .pricing-card.featured .pricing-plan { color: var(--mint); }
-    .pricing-card.featured .pricing-price { color: #fff; }
-    .pricing-card.featured .pricing-period { color: rgba(255,255,255,0.6); }
-    .pricing-card.featured .pricing-divider { border-top-color: rgba(255,255,255,0.16); }
-    .pricing-card.featured .pricing-features li { color: rgba(255,255,255,0.8); }
-    .pricing-card.featured .pricing-features li::before { background: rgba(255,255,255,0.14); color: var(--mint); }
-    .pricing-card.featured .pricing-cta { background: var(--cream); color: var(--forest); position: relative; z-index: 2; }
-    .pricing-card.featured .pricing-cta:hover { background: #fff; box-shadow: 0 10px 26px rgba(0,0,0,0.25); }
+    .work-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .work-card:hover .work-thumb { transform: translateY(-4px); }
+    .work-meta { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 1rem 0.2rem 0; border-top: 0; }
+    .work-meta h3 { font-family: var(--display); font-size: 1.35rem; font-weight: 400; letter-spacing: -0.01em; }
+    .work-meta p { font-size: 0.86rem; color: var(--ink-3); }
+    /* mini abstract layouts so each empty tile reads as a different site */
+    .wire { position: absolute; inset: 9%; display: grid; gap: 6%; }
+    .wire i { display: block; border-radius: 6px; background: rgba(20,22,19,0.07); }
+    .wire b { display: block; border-radius: 4px; background: rgba(20,22,19,0.12); height: 8px; }
+    .wire.a { grid-template-columns: 1fr 1fr; grid-template-rows: auto 1fr; }
+    .wire.a b:first-child { grid-column: 1 / -1; width: 45%; }
+    .wire.b { grid-template-rows: 1fr auto; }
+    .wire.b b { width: 60%; }
+    .wire.c { grid-template-columns: 1fr 1fr 1fr; grid-template-rows: auto 1fr; }
+    .wire.c b { grid-column: 1 / -1; width: 30%; }
+    .wire.d { grid-template-columns: 2fr 1fr; grid-template-rows: 1fr 1fr; }
+    .wire.d i:first-child { grid-row: 1 / -1; }
+    .work-thumb.t2 { background: var(--stone); }
+    .work-thumb.t3 { background: #dfe6dc; }
+    .work-thumb.t4 { background: #e8e4d8; }
 
-    /* FAQ */
-    .faq { background: linear-gradient(185deg, var(--forest-deep) 0%, var(--forest) 100%); color: #fff; }
-    .faq .section-title { color: #fff; }
-    .faq-inner { max-width: 820px; margin: 0 auto; }
-    .faq-item { border-top: 1px solid rgba(255,255,255,0.12); transition: border-color 0.3s; }
-    .faq-item:last-child { border-bottom: 1px solid rgba(255,255,255,0.12); }
-    .faq-item.open { border-color: rgba(159,224,180,0.35); }
+    /* ------------------------------------------------------------------
+       FAQ
+    ------------------------------------------------------------------ */
+    .faq { border-top: 1px solid var(--line); }
+    .faq-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(2rem, 6vw, 6rem); align-items: start; }
+    .faq-grid .section-head { margin-bottom: 0; position: sticky; top: 6rem; }
+    .faq-item { border-top: 1px solid var(--line); }
+    .faq-item:last-child { border-bottom: 1px solid var(--line); }
     .faq-q {
-      width: 100%; background: none; border: none; color: #fff;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 1.55rem 0; cursor: pointer;
-      font-family: 'DM Sans', sans-serif; font-size: 1.02rem; font-weight: 400; letter-spacing: -0.005em;
-      text-align: left; gap: 1.5rem; transition: color 0.25s;
+      width: 100%; background: none; border: 0; text-align: left; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center; gap: 1.5rem;
+      padding: 1.35rem 0; font-size: 1.05rem; font-weight: 400; color: var(--ink);
     }
-    .faq-q:hover { color: var(--mint); }
-    .faq-icon {
-      position: relative; flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.22); transition: transform 0.4s var(--ease), background 0.3s, border-color 0.3s;
-    }
+    .faq-q:hover { color: var(--green-text); }
+    .faq-icon { position: relative; flex: none; width: 22px; height: 22px; }
     .faq-icon::before, .faq-icon::after {
       content: ''; position: absolute; top: 50%; left: 50%; background: currentColor;
-      transform: translate(-50%, -50%); transition: opacity 0.3s;
+      transform: translate(-50%, -50%); transition: transform 0.35s var(--ease), opacity 0.3s;
     }
-    .faq-icon::before { width: 10px; height: 1.5px; }
-    .faq-icon::after { width: 1.5px; height: 10px; }
-    .faq-item.open .faq-icon { transform: rotate(135deg); background: var(--mint); border-color: var(--mint); color: var(--forest); }
+    .faq-icon::before { width: 14px; height: 1px; }
+    .faq-icon::after { width: 1px; height: 14px; }
+    .faq-item.open .faq-icon::after { transform: translate(-50%, -50%) rotate(90deg); opacity: 0; }
     .faq-a { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.4s var(--ease); }
     .faq-a-inner { overflow: hidden; }
     .faq-item.open .faq-a { grid-template-rows: 1fr; }
-    .faq-a p { font-size: 0.94rem; color: rgba(255,255,255,0.66); line-height: 1.78; font-weight: 300; padding-bottom: 1.6rem; max-width: 44rem; }
+    .faq-a p { font-size: 0.98rem; color: var(--ink-2); line-height: 1.7; padding-bottom: 1.5rem; max-width: 40rem; text-wrap: pretty; }
 
-    /* CONTACT */
-    .contact { background: var(--paper); position: relative; overflow: hidden; }
-    .contact::before {
-      content: ''; position: absolute; inset: 0; pointer-events: none;
-      background: radial-gradient(45% 45% at 50% 0%, rgba(11,157,67,0.1), transparent 70%);
-    }
-    .contact-inner { position: relative; z-index: 2; max-width: 720px; margin: 0 auto; text-align: center; }
-    .contact-inner .section-sub { margin: 0 auto 2.8rem; }
-    .contact-form {
-      position: relative; overflow: hidden;
-      background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg);
-      padding: clamp(1.6rem, 4vw, 2.8rem); text-align: left; box-shadow: var(--shadow-lg);
-    }
-    .contact-form::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--forest), var(--accent-bright), var(--forest)); }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .form-group { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.1rem; }
-    .form-group label { font-size: 0.7rem; letter-spacing: 0.13em; text-transform: uppercase; color: var(--ink-soft); font-weight: 600; }
-    .form-group input, .form-group textarea {
-      border: 1px solid var(--line); border-radius: var(--r-sm); padding: 0.85rem 1rem;
-      font-family: 'DM Sans', sans-serif; font-size: 0.92rem; color: var(--ink);
-      background: var(--paper); transition: border-color 0.25s, box-shadow 0.25s, background 0.25s; outline: none; resize: none;
-    }
-    .form-group input::placeholder, .form-group textarea::placeholder { color: #9aa294; }
-    .form-group input:focus, .form-group textarea:focus { border-color: var(--forest); background: #fff; box-shadow: 0 0 0 4px rgba(11,157,67,0.12); }
-    .form-group textarea { min-height: 110px; }
-    .form-submit { width: 100%; margin-top: 0.6rem; justify-content: center; padding: 1.05rem; font-size: 0.82rem; }
+    /* ------------------------------------------------------------------
+       CONTACT + FOOTER — one dark block
+    ------------------------------------------------------------------ */
+    .contact { background: var(--green-deep); color: #fff; padding-bottom: 0; }
+    .contact .display, .contact .display em { color: #fff; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: start; }
+    .contact .eyebrow { color: rgba(255,255,255,0.6); margin-bottom: 1.2rem; }
+    .contact .lede { color: rgba(255,255,255,0.72); margin-top: 1.4rem; max-width: 26rem; }
+    .contact-aside { margin-top: 2.6rem; display: grid; gap: 0.7rem; font-size: 0.92rem; color: rgba(255,255,255,0.6); }
+    .contact-aside a { color: #fff; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.3); }
+    .contact-aside a:hover { border-color: #fff; }
 
-    /* FOOTER */
+    .form { display: grid; gap: 1.1rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+    .field { display: grid; gap: 0.5rem; }
+    .field label { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; color: rgba(255,255,255,0.7); }
+    .field input, .field textarea {
+      width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.18); border-radius: 10px;
+      color: #fff; padding: 0.9rem 1rem; font-family: var(--sans); font-size: 0.98rem; font-weight: 300; outline: none; resize: vertical;
+      transition: border-color 0.25s, background 0.25s;
+    }
+    .field input::placeholder, .field textarea::placeholder { color: rgba(255,255,255,0.58); }
+    .field input:focus, .field textarea:focus { border-color: #fff; background: rgba(255,255,255,0.1); }
+    .field input:focus-visible, .field textarea:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+    .field textarea { min-height: 128px; }
+    .form .btn { justify-self: start; margin-top: 0.4rem; }
+    .form-note { font-size: 0.82rem; color: rgba(255,255,255,0.5); }
+    .form-thanks { display: none; padding: 1.4rem 0; border-top: 1px solid rgba(255,255,255,0.18); font-size: 1rem; color: #fff; }
+    .form.sent .form-thanks { display: block; }
+    .form.sent .form-row, .form.sent .field, .form.sent .btn, .form.sent .form-note { display: none; }
+
     footer {
-      background: var(--forest-deep); color: rgba(255,255,255,0.5);
-      padding: 2.6rem clamp(1.2rem, 5vw, 3.5rem);
-      display: flex; align-items: center; justify-content: space-between; gap: 1.2rem;
-      font-size: 0.78rem; letter-spacing: 0.04em; border-top: 1px solid rgba(255,255,255,0.07);
+      margin-top: clamp(4rem, 8vw, 7rem); padding: 1.8rem 0; border-top: 1px solid rgba(255,255,255,0.14);
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+      font-size: 0.82rem; color: rgba(255,255,255,0.55);
     }
-    footer a { color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
-    footer a:hover { color: var(--mint); }
-    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: rgba(255,255,255,0.85); font-weight: 500; letter-spacing: 0.02em; }
+    footer .brand-name { color: #fff; font-size: 1.3rem; }
+    footer nav { display: flex; gap: 1.6rem; }
+    footer a { color: rgba(255,255,255,0.7); text-decoration: none; }
+    footer a:hover { color: #fff; }
 
-    /* ANIMATIONS */
-    .fade-up { opacity: 0; transform: translateY(26px); transition: opacity 0.75s var(--ease), transform 0.75s var(--ease); }
-    .fade-up.visible { opacity: 1; transform: translateY(0); }
-    .bento-grid > .fade-up:nth-child(2) { transition-delay: 0.07s; }
-    .bento-grid > .fade-up:nth-child(3) { transition-delay: 0.14s; }
-    .bento-grid > .fade-up:nth-child(4) { transition-delay: 0.21s; }
-    .bento-grid > .fade-up:nth-child(5) { transition-delay: 0.28s; }
-    .portfolio-grid > .fade-up:nth-child(2) { transition-delay: 0.08s; }
-    .portfolio-grid > .fade-up:nth-child(3) { transition-delay: 0.16s; }
-    .portfolio-grid > .fade-up:nth-child(4) { transition-delay: 0.24s; }
+    /* ------------------------------------------------------------------
+       MOTION
+    ------------------------------------------------------------------ */
+    .fade-up { opacity: 0; transform: translateY(18px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+    .fade-up.visible { opacity: 1; transform: none; }
+    .fade-up.d1 { transition-delay: 0.08s; }
+    .fade-up.d2 { transition-delay: 0.16s; }
+    .fade-up.d3 { transition-delay: 0.24s; }
     @media (prefers-reduced-motion: reduce) {
-      .fade-up { opacity: 1; transform: none; transition: none; }
       html { scroll-behavior: auto; }
-      .ticker-track { animation: none; }
+      .fade-up { opacity: 1; transform: none; transition: none; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
     }
 
-    /* RESPONSIVE */
+    /* ------------------------------------------------------------------
+       RESPONSIVE
+    ------------------------------------------------------------------ */
     @media (max-width: 980px) {
-      .hero { min-height: auto; padding-top: 7.5rem; }
-      .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
-      .hero-copy { text-align: center; }
-      .hero-sub { margin-inline: auto; }
-      .hero-actions { justify-content: center; }
-      .hero-visual { max-width: 620px; margin: 0 auto; }
-      .bento-grid { grid-template-columns: 1fr 1fr; }
-      .bento.wide { grid-column: span 2; }
       .step { grid-template-columns: 1fr; gap: 2rem; padding: 3.5rem 0 3.5rem 2rem; }
-      .step.reverse .step-text, .step.reverse .step-visual { order: unset; }
-      .step-visual { max-width: 100%; }
-      .step-title { font-size: clamp(1.7rem, 6vw, 2.2rem); }
-      footer { flex-direction: column; text-align: center; }
+      .step:nth-child(even of .step) .step-text { order: 1; }
+      .step:nth-child(even of .step) .step-visual, .step:nth-child(odd of .step) .step-visual { order: 2; justify-self: stretch; max-width: 100%; }
+      .step-title { font-size: clamp(1.9rem, 6.5vw, 2.6rem); }
+      .included-grid, .faq-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .included-grid .section-head, .faq-grid .section-head { position: static; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 560px; }
     }
-    @media (max-width: 700px) {
-      .portfolio-grid { grid-template-columns: 1fr; }
-      .pricing-grid { grid-template-columns: 1fr; }
+    @media (max-width: 760px) {
+      .nav-links { display: none; }
+      .menu-btn { display: inline-flex; }
+      .hero { padding-top: 7.5rem; }
+      .hero-copy .eyebrow { font-size: 0.66rem; letter-spacing: 0.14em; }
+      .frame { border-radius: 14px 14px 0 0; }
+      .frame-bar .url { display: none; }
+      .site-hero { grid-template-columns: 1fr; gap: 1.4rem; }
+      .site-hero .t { font-size: clamp(1.9rem, 8.5vw, 2.6rem); }
+      .site-img { aspect-ratio: 16 / 10; }
+      .site-strip { grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
+      .assurance-list { flex-direction: column; align-items: flex-start; gap: 0.85rem; padding-block: 1.4rem; }
+      .assurance-list li::before, .assurance-list li + li::before { content: ''; display: block; width: 14px; height: 1px; border-radius: 0; background: var(--line-strong); margin: 0 0.9rem 0 0; }
+      .work-grid { grid-template-columns: 1fr; gap: 2rem; }
       .form-row { grid-template-columns: 1fr; }
+      .form .btn { width: 100%; }
+      .step-visual { aspect-ratio: 4 / 3; }
+      footer { flex-direction: column; align-items: flex-start; }
     }
-    @media (max-width: 600px) {
-      .bento-grid { grid-template-columns: 1fr; }
-      .bento.wide { grid-column: span 1; }
-      .nav-word { display: none; }
-      .nav-links { gap: 1.1rem; }
-      .hero-title { font-size: clamp(2.3rem, 9vw, 3rem); }
+    @media (max-width: 420px) {
+      .step { padding-left: 1.5rem; }
+      .inc-list li { grid-template-columns: 1.8rem 1fr; }
     }
   </style>
 </head>
 <body>
 
-<nav id="nav">
-  <a class="nav-logo" href="#">
-    <span class="nav-mark">M</span>
-    <span class="nav-word">Midsomer Design</span>
-  </a>
-  <div class="nav-links">
-    <a href="about.html">Our Team</a>
-    <a href="#contact" class="nav-cta">Book a Call</a>
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top" aria-label="Midsomer Design — home">
+      <span class="brand-name">Midsomer Design</span><span class="brand-dot" aria-hidden="true"></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#process">Process</a>
+      <a href="#included">What's included</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#work">Work</a>
+      <a href="about.html">Our Team</a>
+      <a href="#contact" class="btn btn-solid">Book a call</a>
+    </nav>
+    <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="menu" aria-label="Open menu">
+      <span class="menu-word">Menu</span><span class="bars" aria-hidden="true"></span>
+    </button>
   </div>
-  <div id="progress"></div>
-</nav>
+</header>
 
-<section class="hero">
-  <div class="hero-inner">
-    <div class="hero-copy fade-up">
-      <p class="hero-eyebrow"><span class="dot"></span>$0 Upfront</p>
-      <h1 class="hero-title">Your business<br>deserves a <em>great</em> website.</h1>
-      <p class="hero-sub">Midsomer Design builds beautiful, high-performing websites for small businesses — with <strong>no upfront cost</strong>. Just a simple monthly subscription.</p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn-primary">Book a Free Consultation</a>
-      </div>
-    </div>
-    <div class="hero-visual fade-up" style="transition-delay:0.15s">
-      <img src="hero-image.png" alt="Small business website being built">
-    </div>
-  </div>
-</section>
-
-<div class="ticker">
-  <div class="ticker-track">
-    <span class="ticker-item"><span class="ticker-dot"></span>No upfront cost</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Custom design</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Mobile-first</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>SEO optimised</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Fast turnaround</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Ongoing support</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>No upfront cost</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Custom design</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Mobile-first</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>SEO optimised</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Fast turnaround</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Ongoing support</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>No upfront cost</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Custom design</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Mobile-first</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>SEO optimised</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Fast turnaround</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Ongoing support</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>No upfront cost</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Custom design</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Mobile-first</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>SEO optimised</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Fast turnaround</span>
-    <span class="ticker-item"><span class="ticker-dot"></span>Ongoing support</span>
+<div class="menu" id="menu" aria-hidden="true">
+  <ul class="menu-list">
+    <li><a href="#process">Process <span>01</span></a></li>
+    <li><a href="#included">What's included <span>02</span></a></li>
+    <li><a href="#pricing">Pricing <span>03</span></a></li>
+    <li><a href="#work">Work <span>04</span></a></li>
+    <li><a href="#faq">Questions <span>05</span></a></li>
+    <li><a href="about.html">Our Team <span>06</span></a></li>
+  </ul>
+  <div class="menu-foot">
+    <a href="#contact" class="btn btn-solid">Book a free 15‑minute call</a>
+    <p>Websites for small business. No upfront cost. Sydney.</p>
   </div>
 </div>
 
-<section class="features" id="features">
-  <div class="head-center fade-up">
-    <h2 class="section-title">Everything your business needs</h2>
-    <p class="section-sub">One subscription covers design, development, hosting, and ongoing updates. No surprises.</p>
-  </div>
-  <div class="bento-grid">
-    <div class="bento wide fade-up">
-      <div class="bento-icon-wrap">
-        <svg class="bento-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
-      </div>
-      <h3>Custom Website Design</h3>
-      <p>Every site is designed from scratch to match your brand. No templates, no cookie-cutter layouts. A site that actually looks like <em>you</em> — and converts visitors into customers.</p>
-    </div>
-    <div class="bento fade-up">
-      <div class="bento-icon-wrap">
-        <svg class="bento-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-      </div>
-      <h3>Hosting Included</h3>
-      <p>Fast, reliable hosting is bundled into your subscription. Nothing extra to set up or pay for.</p>
-    </div>
-    <div class="bento fade-up">
-      <div class="bento-icon-wrap">
-        <svg class="bento-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-      </div>
-      <h3>SEO Optimised</h3>
-      <p>Built for search engines from day one, so customers can actually find you on Google.</p>
-    </div>
-    <div class="bento fade-up">
-      <div class="bento-icon-wrap">
-        <svg class="bento-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
-      </div>
-      <h3>Mobile-First</h3>
-      <p>Over 70% of traffic is mobile. Your site looks flawless on every screen size, always.</p>
-    </div>
-    <div class="bento fade-up">
-      <div class="bento-icon-wrap">
-        <svg class="bento-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-      </div>
-      <h3>Ongoing Updates</h3>
-      <p>Need to update your menu, prices, or photos? Just ask. Edits are included.</p>
-    </div>
-  </div>
-</section>
+<main id="top">
 
-<section class="how" id="how">
-  <div class="how-inner">
-    <div class="how-header fade-up" style="text-align:center;">
-      <h2 class="section-title">Our process</h2>
-    </div>
-    <div class="steps-list">
-      <div id="steps-line"></div>
-      <div class="step fade-up">
-        <div class="step-text">
-          <p class="step-label">Step 1</p>
-          <h3 class="step-title">Book a free 15-minute call</h3>
-          <p class="step-desc">Tell us about your business, what you need, and what you're hoping to achieve. No commitment, no pressure — just a conversation to see if we're the right fit.</p>
-          <a href="#contact" class="btn-primary">Book a Call</a>
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap">
+      <div class="hero-copy">
+        <p class="eyebrow fade-up">Small business websites · $0 upfront</p>
+        <h1 class="display h1 fade-up d1" id="hero-title">Your business deserves a <em>great</em> website.</h1>
+        <p class="lede fade-up d2">Midsomer Design builds beautiful, high-performing websites for small businesses — with <strong>no upfront cost</strong>. Just a simple monthly subscription.</p>
+        <div class="hero-actions fade-up d3">
+          <a href="#contact" class="btn btn-solid">Book a free consultation</a>
+          <a href="#process" class="link">See how it works</a>
         </div>
-        <div class="step-visual">Image placeholder</div>
       </div>
-      <div class="step fade-up">
-        <div class="step-text">
-          <p class="step-label">Step 2</p>
-          <h3 class="step-title">We design your site</h3>
-          <p class="step-desc">Our team gets to work building a custom website tailored to your brand. You'll review and approve the design before anything goes live.</p>
-        </div>
-        <div class="step-visual">Image placeholder</div>
-      </div>
-      <div class="step fade-up">
-        <div class="step-text">
-          <p class="step-label">Step 3</p>
-          <h3 class="step-title">Go live, for $0 upfront</h3>
-          <p class="step-desc">Once you're happy, we launch your site. No large bill to pay. You start on a simple monthly subscription that covers everything.</p>
-        </div>
-        <div class="step-visual">Image placeholder</div>
-      </div>
-      <div class="step fade-up">
-        <div class="step-text">
-          <p class="step-label">Step 4</p>
-          <h3 class="step-title">We grow together</h3>
-          <p class="step-desc">Your website evolves with your business. Request updates, add new pages — we're with you every step of the way.</p>
-        </div>
-        <div class="step-visual">Image placeholder</div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- PORTFOLIO -->
-<section class="portfolio" id="portfolio">
-  <div class="head-center fade-up">
-    <h2 class="section-title">Our Designs</h2>
-  </div>
-  <div class="portfolio-grid">
-    <div class="portfolio-card fade-up" data-title="Project One" data-desc="Small business website" onclick="openLightbox(this)">
-      <div class="portfolio-thumb">
-        <!-- Replace with: <img src="portfolio-1.jpg" alt="Project One"> -->
-        <div class="portfolio-thumb-placeholder">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
-          <span>Image coming soon</span>
+      <div class="preview fade-up d3" aria-hidden="true">
+        <div class="frame">
+          <div class="frame-bar">
+            <span class="dots"><i></i><i></i><i></i></span>
+            <span class="url">yourbusiness.com.au</span>
+          </div>
+          <!-- Swap this block for <img src="preview.jpg" alt=""> once a real client site can be shown -->
+          <div class="site">
+            <div class="site-nav">
+              <span class="wm">Elm &amp; Ivy</span>
+              <span class="lk"><i></i><i></i><i></i><b></b></span>
+            </div>
+            <div class="site-hero">
+              <div>
+                <p class="t">Slow mornings,<br>good <em>coffee.</em></p>
+                <div class="p"><i></i><i></i><i></i></div>
+                <div class="cta"></div>
+              </div>
+              <div class="site-img"></div>
+            </div>
+            <div class="site-strip"><div></div><div></div><div></div></div>
+          </div>
         </div>
-        <span class="portfolio-arrow">↗</span>
-      </div>
-      <div class="portfolio-info">
-        <h3>Project One</h3>
-        <p>Small business website</p>
       </div>
     </div>
-    <div class="portfolio-card fade-up" data-title="Project Two" data-desc="Small business website" onclick="openLightbox(this)">
-      <div class="portfolio-thumb">
-        <div class="portfolio-thumb-placeholder">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
-          <span>Image coming soon</span>
-        </div>
-        <span class="portfolio-arrow">↗</span>
-      </div>
-      <div class="portfolio-info">
-        <h3>Project Two</h3>
-        <p>Small business website</p>
-      </div>
-    </div>
-    <div class="portfolio-card fade-up" data-title="Project Three" data-desc="Small business website" onclick="openLightbox(this)">
-      <div class="portfolio-thumb">
-        <div class="portfolio-thumb-placeholder">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
-          <span>Image coming soon</span>
-        </div>
-        <span class="portfolio-arrow">↗</span>
-      </div>
-      <div class="portfolio-info">
-        <h3>Project Three</h3>
-        <p>Small business website</p>
-      </div>
-    </div>
-    <div class="portfolio-card fade-up" data-title="Project Four" data-desc="Small business website" onclick="openLightbox(this)">
-      <div class="portfolio-thumb">
-        <div class="portfolio-thumb-placeholder">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
-          <span>Image coming soon</span>
-        </div>
-        <span class="portfolio-arrow">↗</span>
-      </div>
-      <div class="portfolio-info">
-        <h3>Project Four</h3>
-        <p>Small business website</p>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="closeLightboxOnBackdrop(event)">
-  <div class="lightbox-inner">
-    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
-    <div class="lightbox-placeholder" id="lightbox-img-wrap">Image coming soon</div>
-    <p class="lightbox-caption" id="lightbox-caption"></p>
+  <div class="wrap assurance">
+    <ul class="assurance-list fade-up">
+      <li>No upfront cost</li>
+      <li>Custom design</li>
+      <li>Hosting included</li>
+      <li>Mobile-first</li>
+      <li>SEO optimised</li>
+      <li>Ongoing support</li>
+    </ul>
   </div>
-</div>
 
-<!-- PRICING -->
-<section class="pricing" id="pricing">
-  <div class="head-center fade-up">
-    <h2 class="section-title">Our Plans</h2>
-    <p class="section-sub">One flat monthly fee covers everything — design, hosting, updates, and support. No setup costs, no hidden extras.</p>
-  </div>
-  <div class="pricing-grid fade-up">
-    <div class="pricing-card">
-      <p class="pricing-plan">Starter</p>
-      <div class="pricing-price">$99</div>
-      <p class="pricing-period">per month, no lock-in</p>
-      <hr class="pricing-divider">
-      <ul class="pricing-features">
-        <li>Custom designed website</li>
-        <li>Up to 5 pages</li>
-        <li>Mobile-optimised</li>
-        <li>Hosting &amp; SSL included</li>
-        <li>SEO foundations</li>
-        <li>2 content updates per month</li>
+  <!-- PROCESS — layout kept as-is -->
+  <section class="how" id="process" aria-labelledby="process-title">
+    <div class="wrap">
+      <div class="how-inner">
+        <div class="how-header section-head fade-up">
+          <p class="eyebrow">How it works</p>
+          <h2 class="display h2" id="process-title">Our process</h2>
+          <p class="lede">Four steps from first call to a live site — and we stay with you after launch.</p>
+        </div>
+        <div class="steps-list">
+          <div id="steps-line" aria-hidden="true"></div>
+          <div class="step fade-up">
+            <div class="step-text">
+              <p class="step-label">Step 1</p>
+              <h3 class="step-title">Book a free 15‑minute call</h3>
+              <p class="step-desc">Tell us about your business, what you need, and what you're hoping to achieve. No commitment, no pressure — just a conversation to see if we're the right fit.</p>
+              <a href="#contact" class="btn btn-line">Book a call</a>
+            </div>
+            <div class="step-visual"><span class="num">01</span></div>
+          </div>
+          <div class="step fade-up">
+            <div class="step-text">
+              <p class="step-label">Step 2</p>
+              <h3 class="step-title">We design your site</h3>
+              <p class="step-desc">Our team gets to work building a custom website tailored to your brand. You'll review and approve the design before anything goes live.</p>
+            </div>
+            <div class="step-visual"><span class="num i">02</span></div>
+          </div>
+          <div class="step fade-up">
+            <div class="step-text">
+              <p class="step-label">Step 3</p>
+              <h3 class="step-title">Go live, for $0 upfront</h3>
+              <p class="step-desc">Once you're happy, we launch your site. No large bill to pay. You start on a simple monthly subscription that covers everything.</p>
+            </div>
+            <div class="step-visual"><span class="num">03</span></div>
+          </div>
+          <div class="step fade-up">
+            <div class="step-text">
+              <p class="step-label">Step 4</p>
+              <h3 class="step-title">We grow together</h3>
+              <p class="step-desc">Your website evolves with your business. Request updates, add new pages — we're with you every step of the way.</p>
+            </div>
+            <div class="step-visual"><span class="num i">04</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INCLUDED -->
+  <section class="included" id="included" aria-labelledby="included-title">
+    <div class="wrap included-grid">
+      <div class="section-head fade-up">
+        <p class="eyebrow">What's included</p>
+        <h2 class="display h2" id="included-title">Everything your business needs</h2>
+        <p class="lede">One subscription covers design, development, hosting, and ongoing updates. No surprises.</p>
+      </div>
+      <ul class="inc-list fade-up d1">
+        <li>
+          <span class="n">01</span>
+          <div>
+            <h3>Custom website design</h3>
+            <p>Every site is designed from scratch to match your brand. No templates, no cookie-cutter layouts. A site that actually looks like <em>you</em> — and converts visitors into customers.</p>
+          </div>
+        </li>
+        <li>
+          <span class="n">02</span>
+          <div>
+            <h3>Hosting included</h3>
+            <p>Fast, reliable hosting is bundled into your subscription. Nothing extra to set up or pay for.</p>
+          </div>
+        </li>
+        <li>
+          <span class="n">03</span>
+          <div>
+            <h3>SEO optimised</h3>
+            <p>Built for search engines from day one, so customers can actually find you on Google.</p>
+          </div>
+        </li>
+        <li>
+          <span class="n">04</span>
+          <div>
+            <h3>Mobile-first</h3>
+            <p>Over 70% of traffic is mobile. Your site looks flawless on every screen size, always.</p>
+          </div>
+        </li>
+        <li>
+          <span class="n">05</span>
+          <div>
+            <h3>Ongoing updates</h3>
+            <p>Need to update your menu, prices, or photos? Just ask. Edits are included.</p>
+          </div>
+        </li>
       </ul>
-      <a href="#contact" class="pricing-cta">Get started</a>
     </div>
-    <div class="pricing-card featured">
-      <p class="pricing-plan">Growth</p>
-      <div class="pricing-price">$249</div>
-      <p class="pricing-period">per month, no lock-in</p>
-      <hr class="pricing-divider">
-      <ul class="pricing-features">
-        <li>Everything in Starter</li>
-        <li>Up to 15 pages</li>
-        <li>Online booking or shop</li>
-        <li>Priority support</li>
-        <li>Advanced SEO setup</li>
-        <li>Unlimited content updates</li>
-      </ul>
-      <a href="#contact" class="pricing-cta">Get started</a>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="faq" id="faq">
-  <div class="faq-inner">
-    <div class="head-center fade-up">
-      <h2 class="section-title">Got questions?</h2>
+  <!-- PRICING -->
+  <section class="pricing" id="pricing" aria-labelledby="pricing-title">
+    <div class="wrap">
+      <div class="section-head center fade-up">
+        <p class="eyebrow">Pricing</p>
+        <h2 class="display h2" id="pricing-title">Our plans</h2>
+        <p class="lede">One flat monthly fee covers everything — design, hosting, updates, and support. No setup costs, no hidden extras.</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="plan fade-up">
+          <div class="plan-head"><h3 class="plan-name">Starter</h3><span class="plan-tag">Up to 5 pages</span></div>
+          <div class="plan-price"><span class="amt">$99</span><span class="per">/ month</span></div>
+          <p class="plan-note">No lock-in contract. Cancel any time.</p>
+          <hr class="rule">
+          <ul>
+            <li>Custom designed website</li>
+            <li>Up to 5 pages</li>
+            <li>Mobile-optimised</li>
+            <li>Hosting &amp; SSL included</li>
+            <li>SEO foundations</li>
+            <li>2 content updates per month</li>
+          </ul>
+          <a href="#contact" class="btn btn-line">Get started</a>
+        </div>
+        <div class="plan featured fade-up d1">
+          <div class="plan-head"><h3 class="plan-name">Growth</h3><span class="plan-tag">Up to 15 pages</span></div>
+          <div class="plan-price"><span class="amt">$249</span><span class="per">/ month</span></div>
+          <p class="plan-note">No lock-in contract. Cancel any time.</p>
+          <hr class="rule">
+          <ul>
+            <li>Everything in Starter</li>
+            <li>Up to 15 pages</li>
+            <li>Online booking or shop</li>
+            <li>Priority support</li>
+            <li>Advanced SEO setup</li>
+            <li>Unlimited content updates</li>
+          </ul>
+          <a href="#contact" class="btn btn-light">Get started</a>
+        </div>
+      </div>
+      <p class="plan-foot fade-up">Not sure which fits? <a class="link" href="#contact">Book a call</a> and we'll recommend one.</p>
     </div>
-    <div class="faq-list fade-up">
-      <div class="faq-item">
-        <button class="faq-q">How does $0 upfront actually work? <span class="faq-icon"></span></button>
-        <div class="faq-a"><div class="faq-a-inner"><p>We cover the cost of designing and building your website. Instead of a large upfront payment, you pay a simple monthly subscription that covers your site, hosting, and ongoing support.</p></div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">What does the monthly subscription include? <span class="faq-icon"></span></button>
-        <div class="faq-a"><div class="faq-a-inner"><p>Your subscription covers your custom website, hosting, SSL certificate, ongoing maintenance, and a set number of content updates per month. Everything you need to stay online and looking great.</p></div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">How long does it take to build my website? <span class="faq-icon"></span></button>
-        <div class="faq-a"><div class="faq-a-inner"><p>Most websites are designed, built, and launched within 2–3 weeks from our initial consultation. Larger projects may take a little longer.</p></div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Can I cancel my subscription? <span class="faq-icon"></span></button>
-        <div class="faq-a"><div class="faq-a-inner"><p>Yes. You can cancel at any time. If you cancel, your website will be taken offline.</p></div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">What kinds of businesses do you work with? <span class="faq-icon"></span></button>
-        <div class="faq-a"><div class="faq-a-inner"><p>We work with all kinds of small businesses — cafes, tradespeople, retail shops, service providers, consultants, and more. If you need a professional online presence, we can help.</p></div></div>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="contact" id="contact">
-  <div class="contact-inner">
-    <h2 class="section-title fade-up">Book your free<br>15-minute consultation</h2>
-    <p class="section-sub fade-up">Tell us a bit about your business and we'll be in touch to arrange a quick call. No commitment required.</p>
-    <div class="contact-form fade-up">
-      <div class="form-row">
-        <div class="form-group"><label>First name</label><input type="text" placeholder=""></div>
-        <div class="form-group"><label>Last name</label><input type="text" placeholder=""></div>
+  <!-- WORK -->
+  <section class="work" id="work" aria-labelledby="work-title">
+    <div class="wrap">
+      <div class="section-head fade-up">
+        <p class="eyebrow">Selected work</p>
+        <h2 class="display h2" id="work-title">Our designs</h2>
+        <p class="lede">Our first client sites are in production now. Case studies will appear here as each one launches.</p>
       </div>
-      <div class="form-row">
-        <div class="form-group"><label>Email address</label><input type="email" placeholder=""></div>
-        <div class="form-group"><label>Phone number</label><input type="tel" placeholder=""></div>
+      <div class="work-grid">
+        <!-- To show a real project: replace the .wire div with <img src="project-1.jpg" alt="…"> and update the name/sector. -->
+        <a class="work-card fade-up" href="#contact">
+          <div class="work-thumb t1"><div class="wire a" aria-hidden="true"><b></b><i></i><i></i></div></div>
+          <div class="work-meta"><h3>Project One</h3><p>Small business website</p></div>
+        </a>
+        <a class="work-card fade-up d1" href="#contact">
+          <div class="work-thumb t2"><div class="wire b" aria-hidden="true"><i></i><b></b></div></div>
+          <div class="work-meta"><h3>Project Two</h3><p>Small business website</p></div>
+        </a>
+        <a class="work-card fade-up" href="#contact">
+          <div class="work-thumb t3"><div class="wire c" aria-hidden="true"><b></b><i></i><i></i><i></i></div></div>
+          <div class="work-meta"><h3>Project Three</h3><p>Small business website</p></div>
+        </a>
+        <a class="work-card fade-up d1" href="#contact">
+          <div class="work-thumb t4"><div class="wire d" aria-hidden="true"><i></i><i></i><i></i></div></div>
+          <div class="work-meta"><h3>Project Four</h3><p>Small business website</p></div>
+        </a>
       </div>
-      <div class="form-group"><label>Tell us about your business</label><textarea placeholder="What does your business do? What are you hoping to achieve with a new website?"></textarea></div>
-      <button class="btn-primary form-submit">Request a Consultation</button>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer>
-  <span class="footer-logo">Midsomer Design</span>
-  <span>© 2025 Midsomer Design. All rights reserved.</span>
-  <div style="display:flex;gap:1.5rem;">
-    <a href="about.html">Our Team</a>
-  </div>
-</footer>
+  <!-- FAQ -->
+  <section class="faq" id="faq" aria-labelledby="faq-title">
+    <div class="wrap faq-grid">
+      <div class="section-head fade-up">
+        <p class="eyebrow">Questions</p>
+        <h2 class="display h2" id="faq-title">Got questions?</h2>
+        <p class="lede">The things people usually ask on the first call.</p>
+      </div>
+      <div class="faq-list fade-up d1">
+        <div class="faq-item">
+          <h3><button class="faq-q" aria-expanded="false">How does $0 upfront actually work? <span class="faq-icon" aria-hidden="true"></span></button></h3>
+          <div class="faq-a"><div class="faq-a-inner"><p>We cover the cost of designing and building your website. Instead of a large upfront payment, you pay a simple monthly subscription that covers your site, hosting, and ongoing support.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <h3><button class="faq-q" aria-expanded="false">What does the monthly subscription include? <span class="faq-icon" aria-hidden="true"></span></button></h3>
+          <div class="faq-a"><div class="faq-a-inner"><p>Your subscription covers your custom website, hosting, SSL certificate, ongoing maintenance, and a set number of content updates per month. Everything you need to stay online and looking great.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <h3><button class="faq-q" aria-expanded="false">How long does it take to build my website? <span class="faq-icon" aria-hidden="true"></span></button></h3>
+          <div class="faq-a"><div class="faq-a-inner"><p>Most websites are designed, built, and launched within 2–3 weeks from our initial consultation. Larger projects may take a little longer.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <h3><button class="faq-q" aria-expanded="false">Can I cancel my subscription? <span class="faq-icon" aria-hidden="true"></span></button></h3>
+          <div class="faq-a"><div class="faq-a-inner"><p>Yes. You can cancel at any time. If you cancel, your website will be taken offline.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <h3><button class="faq-q" aria-expanded="false">What kinds of businesses do you work with? <span class="faq-icon" aria-hidden="true"></span></button></h3>
+          <div class="faq-a"><div class="faq-a-inner"><p>We work with all kinds of small businesses — cafes, tradespeople, retail shops, service providers, consultants, and more. If you need a professional online presence, we can help.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact" aria-labelledby="contact-title">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div class="fade-up">
+          <p class="eyebrow">Get in touch</p>
+          <h2 class="display h2" id="contact-title">Book your free<br>15‑minute consultation</h2>
+          <p class="lede">Tell us a bit about your business and we'll be in touch to arrange a quick call. No commitment required.</p>
+          <div class="contact-aside">
+            <span>Based in Sydney, working with businesses across Australia.</span>
+            <span>Prefer to meet the people first? <a href="about.html">Meet the team</a></span>
+          </div>
+        </div>
+        <form class="form fade-up d1" id="contact-form" novalidate>
+          <div class="form-row">
+            <div class="field"><label for="f-first">First name</label><input id="f-first" name="first" type="text" autocomplete="given-name" required></div>
+            <div class="field"><label for="f-last">Last name</label><input id="f-last" name="last" type="text" autocomplete="family-name" required></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label for="f-email">Email address</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+            <div class="field"><label for="f-phone">Phone number</label><input id="f-phone" name="phone" type="tel" autocomplete="tel"></div>
+          </div>
+          <div class="field"><label for="f-about">Tell us about your business</label><textarea id="f-about" name="about" placeholder="What does your business do? What are you hoping to achieve with a new website?"></textarea></div>
+          <button class="btn btn-light" type="submit">Request a consultation</button>
+          <p class="form-note">We'll reply within one business day.</p>
+          <p class="form-thanks" role="status">Thanks — we've got your details and we'll be in touch shortly to arrange a call.</p>
+        </form>
+      </div>
+
+      <footer>
+        <span class="brand-name">Midsomer Design</span>
+        <nav aria-label="Footer">
+          <a href="about.html">Our Team</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <span>© 2025 Midsomer Design. All rights reserved.</span>
+      </footer>
+    </div>
+  </section>
+
+</main>
 
 <script>
-  // Immediately make visible any elements already in the viewport on load
-  function checkVisible() {
-    document.querySelectorAll('.fade-up').forEach(el => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight && rect.bottom > 0) {
-        el.classList.add('visible');
-      }
-    });
+  // Reveal on scroll
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fades = document.querySelectorAll('.fade-up');
+  if (reduce || !('IntersectionObserver' in window)) {
+    fades.forEach(el => el.classList.add('visible'));
+  } else {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.08, rootMargin: '0px 0px -5% 0px' });
+    fades.forEach(el => obs.observe(el));
+    // anything already on screen at load
+    fades.forEach(el => { const r = el.getBoundingClientRect(); if (r.top < innerHeight && r.bottom > 0) el.classList.add('visible'); });
   }
-  checkVisible();
-  window.addEventListener('load', checkVisible);
 
-  // Observer handles elements that come into view on scroll
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
-
-  // Nav state + scroll progress
+  // Nav state
   const navEl = document.getElementById('nav');
-  const progressEl = document.getElementById('progress');
-  function onScroll() {
-    const y = window.scrollY;
-    navEl.classList.toggle('scrolled', y > 20);
-    const max = document.documentElement.scrollHeight - window.innerHeight;
-    progressEl.style.width = (max > 0 ? (y / max) * 100 : 0) + '%';
-  }
+  const onScroll = () => navEl.classList.toggle('scrolled', window.scrollY > 12);
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
-  function openLightbox(card) {
-    const title = card.dataset.title;
-    const desc = card.dataset.desc;
-    const img = card.querySelector('.portfolio-thumb img');
-    const wrap = document.getElementById('lightbox-img-wrap');
-    if (img) {
-      wrap.innerHTML = '';
-      const clone = img.cloneNode();
-      clone.style.cssText = 'width:100%;height:auto;border-radius:6px;display:block;';
-      wrap.appendChild(clone);
-    } else {
-      wrap.textContent = 'Image coming soon';
-    }
-    document.getElementById('lightbox-caption').textContent = title + (desc ? ' — ' + desc : '');
-    document.getElementById('lightbox').classList.add('open');
-    document.body.style.overflow = 'hidden';
+  // Mobile menu
+  const menuBtn = document.getElementById('menu-btn');
+  const menu = document.getElementById('menu');
+  function setMenu(open) {
+    document.body.classList.toggle('menu-open', open);
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    menuBtn.querySelector('.menu-word').textContent = open ? 'Close' : 'Menu';
+    menu.setAttribute('aria-hidden', String(!open));
   }
-  function closeLightbox() {
-    document.getElementById('lightbox').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  function closeLightboxOnBackdrop(e) {
-    if (e.target === document.getElementById('lightbox')) closeLightbox();
-  }
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  menuBtn.addEventListener('click', () => setMenu(!document.body.classList.contains('menu-open')));
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+  window.matchMedia('(min-width: 761px)').addEventListener('change', e => { if (e.matches) setMenu(false); });
 
+  // Process line — runs from the top of the first visual to the bottom of the last
   function positionStepsLine() {
     const line = document.getElementById('steps-line');
     const list = document.querySelector('.steps-list');
@@ -904,30 +883,24 @@
   }
   window.addEventListener('load', positionStepsLine);
   window.addEventListener('resize', positionStepsLine);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(positionStepsLine);
 
-  function setupTicker() {
-    const track = document.querySelector('.ticker-track');
-    if (!track) return;
-    const items = track.querySelectorAll('.ticker-item');
-    const setSize = items.length / 4; // 4 identical copies
-    let setWidth = 0;
-    for (let i = 0; i < setSize; i++) {
-      setWidth += items[i].getBoundingClientRect().width;
-    }
-    let styleEl = document.getElementById('ticker-dynamic');
-    if (!styleEl) { styleEl = document.createElement('style'); styleEl.id = 'ticker-dynamic'; document.head.appendChild(styleEl); }
-    styleEl.textContent = `@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-${setWidth}px); } }`;
-  }
-  window.addEventListener('load', setupTicker);
-  window.addEventListener('resize', setupTicker);
-
+  // FAQ
   document.querySelectorAll('.faq-q').forEach(btn => {
     btn.addEventListener('click', () => {
-      const item = btn.parentElement;
+      const item = btn.closest('.faq-item');
       const isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-      if (!isOpen) item.classList.add('open');
+      document.querySelectorAll('.faq-item').forEach(i => { i.classList.remove('open'); i.querySelector('.faq-q').setAttribute('aria-expanded', 'false'); });
+      if (!isOpen) { item.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); }
     });
+  });
+
+  // Contact form — no backend yet; validate and show a confirmation
+  const form = document.getElementById('contact-form');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    form.classList.add('sent');
   });
 </script>
 </body>
